@@ -1,27 +1,39 @@
-# AngularMarketplace
+# Marketplace Site With Angular (Etsy/Amazon Clone)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.6.
+Read the full tutorial here:
 
-## Development server
+[**>> How to Build a Marketplace Site With Angular (Etsy/Amazon Clone)**](https://www.cometchat.com/tutorials/build-a-modern-android-chat-app-with-kotlin/?utm_source=github&utm_medium=link&utm_campaign=NAMEOFREPO)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+This examplen shows a marketplace app which allows buyers and sellers to chat with each other:
 
-## Code scaffolding
+<SCREENSHOT - PLEASE ENSURE SCREENSHOTS LIVE IN A /screenshots FOLDER>
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Technology
+This demo uses:
 
-## Build
+* CometChat Pro Angular 2.2.1
+* Angular
+* ? 
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Running the demo
 
-## Running unit tests
+To run the demo follow these steps:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+1. [Head to CometChat Pro and create an account](https://www.cometchat.com/pro?utm_source=github&utm_medium=link&utm_campaign=NAMEOFREPO)
+2. From the [dashboard](https://app.cometchat.com/signup?utm_source=github&utm_medium=link&utm_campaign=NAMEOFREPO), create a new app called "Kotlin Group Chat"
+3. One created, click **Explore**
+4. Go to the **API Keys** tab and click **Create API Key**
+5. Create an API key called "Kotlin Group Chat Key" with **Full Access**
+4. Download the repository [here](https://github.com/cometchat-pro-samples/kotlin-group-chat/archive/master.zip) or by running `git clone https://github.com/cometchat-pro-samples/kotlin-group-chat.git` and open it in Android Studio
+5. Update [strings.xml](https://github.com/cometchat-pro-samples/kotlin-group-chat/blob/master/app/src/main/res/values/strings.xml) with your newly-created `appID` and `apiKey`
+6. Run the app and login with one of the test users: superhero1, superhero2, superhero3, superhero4 or superhero5
 
-## Running end-to-end tests
+Questions about running the demo? [Open an issue](https://github.com/cometchat-pro-samples/kotlin-group-chat/issues). We're here to help ✌️
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-## Further help
+## Useful links
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- 🏠 [CometChat Homepage](https://www.cometchat.com/pro/?utm_source=github&utm_medium=link&utm_campaign=NAMEOFREPO)
+- 🚀 [Create your free account](https://app.cometchat.com/signup/?utm_source=github&utm_medium=link&utm_campaign=NAMEOFREPO)
+- 📚 [Documentation](https://prodocs.cometchat.com/?utm_source=github&utm_medium=link&utm_campaign=NAMEOFREPO)
+- 👾 [GitHub](https://www.github.com/cometchat-pro)
