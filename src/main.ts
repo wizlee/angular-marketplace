@@ -18,10 +18,18 @@ const appSetting = new CometChat.AppSettingsBuilder()
 CometChat.init(COMETCHAT_CONSTANTS.APP_ID, appSetting).then(
   () => {
     console.log("CometChat initialized successfully");
-    // You can now call login function.
-    platformBrowserDynamic()
-      .bootstrapModule(AppModule)
-      .catch((err) => console.error(err));
+
+    CometChat.login(COMETCHAT_CONSTANTS.UIDs.ironman, COMETCHAT_CONSTANTS.AUTH_KEY).then(
+      (user) => {
+        console.log("Login Successful:", { user });
+        platformBrowserDynamic()
+          .bootstrapModule(AppModule)
+          .catch((err) => console.error(err));
+      },
+      (error) => {
+        console.log("Login failed with exception:", { error });
+      }
+    );
   },
   (error) => {
     console.log("Initialization failed with error:", error);
