@@ -6597,8 +6597,6 @@ legend.wt-text-caption-title {
   }
 }
 @media screen and (max-width: 500px) {
-  .is-responsive .apply-nav-height .sell-on-etsy-link a {
-  }
   .is-responsive .apply-nav-height .sell-on-etsy-link a .sell-copy {
     display: none;
   }
