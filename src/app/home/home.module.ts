@@ -8,13 +8,27 @@ import { AboutBannerComponent } from './about-banner.component';
 import { FooterComponent } from './footer.component';
 import { ContentComponent } from './content.component';
 
-
+import { AccountModule } from "../account/account.module";
 
 @NgModule({
-  declarations: [HeaderComponent, ProductBannerComponent, ProductBundleComponent, ProductListComponent, AboutBannerComponent, FooterComponent, ContentComponent],
-  imports: [
-    CommonModule
+  declarations: [
+    HeaderComponent,
+    ProductBannerComponent,
+    ProductBundleComponent,
+    ProductListComponent,
+    AboutBannerComponent,
+    FooterComponent,
+    ContentComponent,
   ],
-  exports: [HeaderComponent, ProductBannerComponent, ProductBundleComponent, ProductListComponent, AboutBannerComponent, FooterComponent, ContentComponent]
+  imports: [CommonModule, AccountModule],
+  exports: [
+    HeaderComponent,
+    ProductBannerComponent,
+    ProductBundleComponent,
+    ProductListComponent,
+    AboutBannerComponent,
+    FooterComponent,
+    ContentComponent,
+  ],
 })
-export class HomeModule { }
+export class HomeModule {}

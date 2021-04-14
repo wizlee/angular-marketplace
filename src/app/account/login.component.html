@@ -1,0 +1,293 @@
+<button
+  class="wt-btn wt-btn--small wt-btn--transparent wt-mr-xs-1 inline-overlay-trigger signin-header-action select-signin"
+  (click)="openModal('login-modal')"
+>
+  Sign in
+</button>
+
+<jw-modal id="login-modal">
+  <div
+    class="transitional-wide bg-white guest no-touch is-responsive en-GB MYR MY is-global-nav js-focus-within wt-focus-visible wt-body-no-scroll"
+    style="top: 0px; padding-right: 17px"
+  >
+    <div id="wt-modal-container" aria-hidden="false">
+      <div
+        class="wt-overlay wt-overlay--has-close-icon wt-overlay--will-animate"
+        id="join-neu-overlay"
+        role="dialog"
+        aria-hidden="false"
+        aria-labelledby="join-neu-overlay-title"
+        aria-label="Sign In or Register Overlay"
+        aria-modal="true"
+      >
+        <div
+          class="wt-overlay__modal wt-overlay--animation-done"
+          style="max-width: 384px"
+        >
+          <button
+            class="wt-btn wt-btn--transparent wt-btn--icon wt-overlay__close-icon wt-btn--light"
+            type="button"
+            (click)="closeModal('login-modal');"
+          >
+            <span class="etsy-icon" aria-label="Close"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                focusable="false"
+              >
+                <path
+                  d="M 13.414 12 l 6.293 -6.293 a 1 1 0 0 0 -1.414 -1.414 L 12 10.586 L 5.707 4.293 A 1 1 0 0 0 4.293 5.707 L 10.586 12 L 4.293 18.293 a 1 1 0 1 0 1.414 1.414 L 12 13.414 l 6.293 6.293 a 1 1 0 0 0 1.414 -1.414 Z"/>
+              </svg>
+            </span>
+          </button>
+          <div>
+            <div class="wt-grid wt-grid--block">
+              <div class="wt-grid__item-xs-12">
+                <div class="wt-bg-white wt-mb-xs-2">
+                  <div>
+                    <form
+                      class="wt-position-relative"
+                      id="login-form"
+                      action="//"
+                      method="POST"
+                    >
+                      <div class="wt-grid wt-grid--block">
+                        <div class="wt-grid__item-xs-12">
+                          <div>
+                            <div
+                              class="wt-display-flex-xs wt-justify-content-space-between wt-align-items-center wt-pb-xs-2"
+                            >
+                              <h1
+                                class="wt-text-title-02"
+                                id="join-neu-overlay-title"
+                              >
+                                Sign in
+                              </h1>
+                            </div>
+                          </div>
+
+                          <div class="wt-mb-xs-2 wt-validation">
+                            <label
+                              class="wt-mb-xs-1 wt-text-caption-title"
+                              for="join_neu_email_field"
+                            >
+                              Username
+                            </label>
+                            <input
+                              name="email"
+                              class="wt-input"
+                              id="join_neu_email_field"
+                              aria-describedby="aria-join_neu_email_field-error"
+                              required=""
+                              type="text"
+                              placeholder=""
+                              autocapitalize="off"
+                            />
+                            <div
+                              class="wt-validation__message wt-mt-xs-1 wt-validation__message--is-hidden"
+                              id="aria-join_neu_email_field-error"
+                            ></div>
+                          </div>
+                          <div class="wt-mb-xs-2 wt-validation">
+                            <label
+                              class="wt-mb-xs-1 wt-text-caption-title"
+                              for="join_neu_password_field"
+                            >
+                              Password
+                            </label>
+                            <input
+                              name="password"
+                              class="wt-input"
+                              id="join_neu_password_field"
+                              aria-describedby="aria-join_neu_password_field-error"
+                              type="password"
+                              placeholder="(illustration only)"
+                            />
+                            <div
+                              class="wt-validation__message wt-mt-xs-1 wt-validation__message--is-hidden"
+                              id="aria-join_neu_password_field-error"
+                            ></div>
+                          </div>
+
+                          <div
+                            class="wt-display-flex-xs wt-flex-direction-row-xs wt-justify-content-space-between wt-mb-xs-3"
+                          >
+                            <div class="wt-checkbox">
+                              <input
+                                name="persistent"
+                                id="persisent"
+                                type="checkbox"
+                                checked="checked"
+                                value="true"
+                              />
+                              <label for="persisent"> Stay signed in </label>
+                            </div>
+                            <div class="wt-mt-xs-1">
+                              <a
+                                class="wt-text-gray wt-text-caption"
+                                href="//"
+                                >Forgot your password?</a
+                              >
+                            </div>
+                          </div>
+
+                          <div>
+                            <div class="wt-validation">
+                              <button
+                                name="submit_attempt"
+                                class="wt-btn wt-btn--primary wt-width-full"
+                                aria-describedby="aria-privacy-policy"
+                                type="submit"
+                                value="sign-in"
+                              >
+                                Sign in
+                              </button>
+                              <div
+                                class="wt-validation__message wt-mt-xs-1 wt-validation__message--is-hidden"
+                              ></div>
+                            </div>
+                          </div>
+
+                          <p class="wt-text-caption wt-text-center-xs wt-mt-xs-3">
+                            <a
+                              class="wt-text-gray"
+                              href="//"
+                            >
+                              Trouble signing in?
+                            </a>
+                          </p>
+                        </div>
+                      </div>
+                    </form>
+
+                    <div>
+                      <div
+                        class="wt-mb-xs-4 wt-mt-xs-4 wt-bb-xs wt-text-center-xs separator-flush-margins"
+                        style="line-height: 0"
+                      >
+                        <span
+                          class="wt-bg-white wt-p-xs-2 wt-vertical-align-bottom wt-text-gray"
+                          style="line-height: 0"
+                        >
+                          OR
+                        </span>
+                      </div>
+                    </div>
+
+                    <form
+                      class="wt-position-relative"
+                      id="register-form"
+                      action="//"
+                      method="POST"
+                    >
+                      <div class="wt-display-flex-xs wt-flex-direction-column-xs">
+                        <div class="wt-grid wt-grid--block">
+                          <div class="wt-grid__item-xs-12">
+                            <div>
+                              <div
+                                class="wt-display-flex-xs wt-justify-content-space-between wt-align-items-center wt-pb-xs-2"
+                              >
+                                <h1
+                                  class="wt-text-title-02"
+                                  id="join-neu-overlay-title"
+                                >
+                                  Register
+                                </h1>
+                              </div>
+                            </div>
+
+                            <div class="wt-mb-xs-2 wt-validation">
+                              <label
+                                class="wt-mb-xs-1 wt-text-caption-title"
+                                for="register_neu_email_field"
+                              >
+                                Username
+                              </label>
+                              <input
+                                name="email"
+                                class="wt-input"
+                                id="register_neu_email_field"
+                                aria-describedby="aria-register_neu_email_field-error"
+                                required=""
+                                type="text"
+                                placeholder=""
+                                autocapitalize="off"
+                              />
+                              <div
+                                class="wt-validation__message wt-mt-xs-1 wt-validation__message--is-hidden"
+                                id="aria-register_neu_email_field-error"
+                              ></div>
+                            </div>
+                            <div class="wt-mb-xs-2 wt-validation">
+                              <label
+                                class="wt-mb-xs-1 wt-text-caption-title"
+                                for="register_neu_password_field"
+                              >
+                                Password
+                              </label>
+                              <input
+                                name="password"
+                                class="wt-input"
+                                id="register_neu_password_field"
+                                aria-describedby="aria-register_neu_password_field-error"
+                                type="password"
+                                placeholder="(illustration only)"
+                              />
+                              <div
+                                class="wt-validation__message wt-mt-xs-1 wt-validation__message--is-hidden"
+                                id="aria-register_neu_password_field-error"
+                              ></div>
+                            </div>
+
+                            <div>
+                              <div class="wt-validation">
+                                <button
+                                  name="submit_attempt"
+                                  class="wt-btn wt-btn--secondary wt-width-full"
+                                  aria-describedby="aria-privacy-policy"
+                                  type="submit"
+                                  value="sign-in"
+                                >
+                                  Register
+                                </button>
+                                <div
+                                  class="wt-validation__message wt-mt-xs-1 wt-validation__message--is-hidden"
+                                ></div>
+                              </div>
+                            </div>
+
+                          </div>
+                        </div>
+
+                        <p
+                          class="privacy-policy wt-text-caption wt-text-gray wt-mt-xs-3"
+                          id="aria-privacy-policy"
+                        >
+                          By clicking Sign in or Continue with CometChat, you agree to Etsy's
+                          <a
+                            title="Terms of Use"
+                            href="//"
+                            >Terms of Use</a
+                          >
+                          and
+                          <a
+                            title="Privacy Policy"
+                            href="//"
+                            >Privacy Policy</a
+                          >. Etsy may send you communications; you may change your
+                          preferences in your account settings. We'll never post
+                          without your permission.
+                        </p>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</jw-modal>
