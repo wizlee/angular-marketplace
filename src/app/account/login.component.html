@@ -1,11 +1,11 @@
 <button
   class="wt-btn wt-btn--small wt-btn--transparent wt-mr-xs-1 inline-overlay-trigger signin-header-action select-signin"
-  (click)="openModal('login-modal')"
+  (click)="openModal()"
 >
   {{ isLogin == true ? "Log out" : "Sign in" }}
 </button>
 
-<jw-modal id="login-modal">
+<jw-modal id="{{ loginModalId }}">
   <div
     class="transitional-wide bg-white guest no-touch is-responsive en-GB MYR MY is-global-nav js-focus-within wt-focus-visible wt-body-no-scroll"
     style="top: 0px; padding-right: 17px"
@@ -27,7 +27,7 @@
           <button
             class="wt-btn wt-btn--transparent wt-btn--icon wt-overlay__close-icon wt-btn--light"
             type="button"
-            (click)="closeModal('login-modal');"
+            (click)="closeModal();"
           >
             <span class="etsy-icon" aria-label="Close"
               ><svg

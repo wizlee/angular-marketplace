@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   isLogin: boolean; // TODO: use auth service instead of a local variable
   signInErrorMsg: string;
   defaultUserUrls: {};
+  loginModalId: string;
 
   constructor(private modalService: ModalService) {}
 
@@ -21,9 +22,10 @@ export class LoginComponent implements OnInit {
     this.isLogin = false;
     this.signInErrorMsg = "Can't be blank";
     this.defaultUserUrls = COMETCHAT_CONSTANTS.imgUrls;
+    this.loginModalId = "login-modal";
   }
 
-  openModal(id: string) {
+  openModal() {
     if (this.isLogin) {
       CometChat.logout().then(
         (_) => {
@@ -38,12 +40,12 @@ export class LoginComponent implements OnInit {
 
       this.isLogin = false;
     } else {
-      this.modalService.open(id);
+      this.modalService.open(this.loginModalId);
     }
   }
 
-  closeModal(id: string) {
-    this.modalService.close(id);
+  closeModal() {
+    this.modalService.close(this.loginModalId);
   }
 
   onSignIn(f: NgForm) {
@@ -60,6 +62,7 @@ export class LoginComponent implements OnInit {
           (user) => {
             console.log("Login Successful:", { user });
             this.isLogin = true;
+            this.closeModal();
           },
           (error) => {
             console.log("Login failed with exception:", { error });
@@ -76,6 +79,7 @@ export class LoginComponent implements OnInit {
 
   onSelectUser(f: NgForm, user: string) {
     f.setValue({ username: user });
+    this.onSignIn(f);
   }
 
   onRegister(f: NgForm) {
