@@ -2,7 +2,7 @@
   class="wt-btn wt-btn--small wt-btn--transparent wt-mr-xs-1 inline-overlay-trigger signin-header-action select-signin"
   (click)="openModal('login-modal')"
 >
-  Sign in
+  {{ isLogin == true ? "Log out" : "Sign in" }}
 </button>
 
 <jw-modal id="login-modal">
@@ -48,9 +48,8 @@
                   <div>
                     <form
                       class="wt-position-relative"
-                      id="login-form"
-                      action="//"
-                      method="POST"
+                      #s="ngForm"
+                      (ngSubmit)="onSignIn(s)"
                     >
                       <div class="wt-grid wt-grid--block">
                         <div class="wt-grid__item-xs-12">
@@ -67,47 +66,40 @@
                             </div>
                           </div>
 
+                        <div class="tags-section-container tag-cards-section-container-with-images">
+                          <ul class="wt-display-flex-xs tag-cards-with-image wt-flex-wrap">
+                            <li
+                              class="wt-display-flex-xs wt-flex-direction-column-xs wt-ml-xs-1 wt-mr-xs-1 wt-mt-xs-2 wt-mb-xs-4"
+                              *ngFor="let item of defaultUserUrls | keyvalue"
+                              (click)="onSelectUser(s, item.key)">
+                              <a class="wt-transparent-card tag-card-with-image wt-mb-xs-2" href="//">
+                                <img class="wt-circle wt-horizontal-center tag-image wt-mb-xs-1 wt-b-xs"
+                                  src="{{ item.value }}" alt="no-image">
+                                <h4 class="tag-card-title wt-text-caption-title wt-text-center-xs wt-line-height-tight wt-text-truncate--multi-line tag-with-image-text-internal">
+                                    {{ item.key }}
+                                </h4>
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+
                           <div class="wt-mb-xs-2 wt-validation">
                             <label
                               class="wt-mb-xs-1 wt-text-caption-title"
-                              for="join_neu_email_field"
+                              for="username"
                             >
                               Username
                             </label>
                             <input
-                              name="email"
                               class="wt-input"
-                              id="join_neu_email_field"
-                              aria-describedby="aria-join_neu_email_field-error"
-                              required=""
-                              type="text"
-                              placeholder=""
-                              autocapitalize="off"
+                              name="username"
+                              #username="ngModel"
+                              ngModel required
                             />
                             <div
-                              class="wt-validation__message wt-mt-xs-1 wt-validation__message--is-hidden"
-                              id="aria-join_neu_email_field-error"
-                            ></div>
-                          </div>
-                          <div class="wt-mb-xs-2 wt-validation">
-                            <label
-                              class="wt-mb-xs-1 wt-text-caption-title"
-                              for="join_neu_password_field"
-                            >
-                              Password
-                            </label>
-                            <input
-                              name="password"
-                              class="wt-input"
-                              id="join_neu_password_field"
-                              aria-describedby="aria-join_neu_password_field-error"
-                              type="password"
-                              placeholder="(illustration only)"
-                            />
-                            <div
-                              class="wt-validation__message wt-mt-xs-1 wt-validation__message--is-hidden"
-                              id="aria-join_neu_password_field-error"
-                            ></div>
+                              *ngIf="s.invalid && (username.dirty || username.touched)"
+                              class="wt-validation__message wt-mt-xs-1"
+                            >{{ signInErrorMsg }}</div>
                           </div>
 
                           <div
@@ -135,17 +127,12 @@
                           <div>
                             <div class="wt-validation">
                               <button
-                                name="submit_attempt"
+                                name="sign-in"
                                 class="wt-btn wt-btn--primary wt-width-full"
-                                aria-describedby="aria-privacy-policy"
                                 type="submit"
-                                value="sign-in"
                               >
                                 Sign in
                               </button>
-                              <div
-                                class="wt-validation__message wt-mt-xs-1 wt-validation__message--is-hidden"
-                              ></div>
                             </div>
                           </div>
 
@@ -177,9 +164,8 @@
 
                     <form
                       class="wt-position-relative"
-                      id="register-form"
-                      action="//"
-                      method="POST"
+                      #r="ngForm"
+                      (ngSubmit)="onRegister(r)"
                     >
                       <div class="wt-display-flex-xs wt-flex-direction-column-xs">
                         <div class="wt-grid wt-grid--block">
@@ -200,60 +186,49 @@
                             <div class="wt-mb-xs-2 wt-validation">
                               <label
                                 class="wt-mb-xs-1 wt-text-caption-title"
-                                for="register_neu_email_field"
+                                for="registerUsername"
                               >
                                 Username
                               </label>
                               <input
-                                name="email"
                                 class="wt-input"
-                                id="register_neu_email_field"
-                                aria-describedby="aria-register_neu_email_field-error"
-                                required=""
-                                type="text"
-                                placeholder=""
-                                autocapitalize="off"
+                                name="registerUsername"
+                                #registerUsername="ngModel"
+                                ngModel required
                               />
                               <div
-                                class="wt-validation__message wt-mt-xs-1 wt-validation__message--is-hidden"
-                                id="aria-register_neu_email_field-error"
-                              ></div>
+                                *ngIf="r.invalid && registerUsername.invalid && ( registerUsername.dirty || registerUsername.touched)"
+                                class="wt-validation__message wt-mt-xs-1"
+                              >Can't be blank</div>
                             </div>
                             <div class="wt-mb-xs-2 wt-validation">
                               <label
                                 class="wt-mb-xs-1 wt-text-caption-title"
-                                for="register_neu_password_field"
+                                for="displayname"
                               >
                                 Password
                               </label>
                               <input
-                                name="password"
                                 class="wt-input"
-                                id="register_neu_password_field"
-                                aria-describedby="aria-register_neu_password_field-error"
-                                type="password"
-                                placeholder="(illustration only)"
+                                name="displayname"
+                                #displayname="ngModel"
+                                ngModel required
                               />
                               <div
-                                class="wt-validation__message wt-mt-xs-1 wt-validation__message--is-hidden"
-                                id="aria-register_neu_password_field-error"
-                              ></div>
+                                *ngIf="r.invalid && displayname.invalid && ( displayname.dirty || displayname.touched)"
+                                class="wt-validation__message wt-mt-xs-1"
+                              >Can't be blank</div>
                             </div>
 
                             <div>
                               <div class="wt-validation">
                                 <button
-                                  name="submit_attempt"
+                                  name="register"
                                   class="wt-btn wt-btn--secondary wt-width-full"
-                                  aria-describedby="aria-privacy-policy"
                                   type="submit"
-                                  value="sign-in"
                                 >
                                   Register
                                 </button>
-                                <div
-                                  class="wt-validation__message wt-mt-xs-1 wt-validation__message--is-hidden"
-                                ></div>
                               </div>
                             </div>
 
@@ -264,7 +239,7 @@
                           class="privacy-policy wt-text-caption wt-text-gray wt-mt-xs-3"
                           id="aria-privacy-policy"
                         >
-                          By clicking Sign in or Continue with CometChat, you agree to Etsy's
+                          By clicking Sign in or Continue with EtsyClone, you agree to EtsyClone's
                           <a
                             title="Terms of Use"
                             href="//"
@@ -275,7 +250,7 @@
                             title="Privacy Policy"
                             href="//"
                             >Privacy Policy</a
-                          >. Etsy may send you communications; you may change your
+                          >. EtsyClone may send you communications; you may change your
                           preferences in your account settings. We'll never post
                           without your permission.
                         </p>

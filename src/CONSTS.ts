@@ -9,4 +9,14 @@ export const COMETCHAT_CONSTANTS = {
     wolverine: "SUPERHERO4",
     cyclops: "SUPERHERO5",
   },
+  imgUrls: {
+    ironman: "https://data-us.cometchat.io/assets/images/avatars/ironman.png",
+    captainamerica:
+      "https://data-us.cometchat.io/assets/images/avatars/captainamerica.png",
+    spiderman:
+      "https://data-us.cometchat.io/assets/images/avatars/spiderman.png",
+    wolverine:
+      "https://data-us.cometchat.io/assets/images/avatars/wolverine.png",
+    cyclops: "https://data-us.cometchat.io/assets/images/avatars/cyclops.png",
+  },
 };
