@@ -12,7 +12,6 @@ import { COMETCHAT_CONSTANTS } from "../../CONSTS";
 })
 export class LoginComponent implements OnInit {
   isLogin: boolean; // TODO: use auth service instead of a local variable
-  signInErrorMsg: string;
   defaultUserUrls: {};
   loginModalId: string;
 
@@ -20,9 +19,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLogin = false;
-    this.signInErrorMsg = "Can't be blank";
-    this.defaultUserUrls = COMETCHAT_CONSTANTS.imgUrls;
     this.loginModalId = "login-modal";
+    this.defaultUserUrls = COMETCHAT_CONSTANTS.imgUrls;
   }
 
   openModal() {
@@ -44,13 +42,15 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  closeModal() {
+  closeModal(f: NgForm = undefined) {
+    if (f) {
+      f.reset();
+    }
     this.modalService.close(this.loginModalId);
   }
 
   onSignIn(f: NgForm) {
     f.control.markAllAsTouched();
-    this.signInErrorMsg = "Can't be blank";
 
     const username = f.value.username;
     if (username) {
@@ -62,19 +62,21 @@ export class LoginComponent implements OnInit {
           (user) => {
             console.log("Login Successful:", { user });
             this.isLogin = true;
-            this.closeModal();
+            this.closeModal(f);
           },
           (error) => {
+            f.control.setErrors({
+              signInErrorMsg: `Login failed: Check your CometChat App ID & Secret`,
+            });
             console.log("Login failed with exception:", { error });
           }
         );
       } else {
-        f.setValue({ username: "" });
-        this.signInErrorMsg = `User ${username} doesn't exist.`;
+        f.control.setErrors({
+          signInErrorMsg: `User '${username}' is not one of the default users. To use a default user without registering, please select an avatar. `,
+        });
       }
     }
-    console.log(f.value); // { first: '', last: '' }
-    console.log(f.valid); // false
   }
 
   onSelectUser(f: NgForm, user: string) {

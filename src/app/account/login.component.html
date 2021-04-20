@@ -97,9 +97,9 @@
                               ngModel required
                             />
                             <div
-                              *ngIf="s.invalid && (username.dirty || username.touched)"
+                              *ngIf="username.invalid && (username.dirty || username.touched)"
                               class="wt-validation__message wt-mt-xs-1"
-                            >{{ signInErrorMsg }}</div>
+                            >Can't be blank</div>
                           </div>
 
                           <div
@@ -133,6 +133,10 @@
                               >
                                 Sign in
                               </button>
+                              <div
+                                *ngIf="s?.errors?.signInErrorMsg && s.invalid && (s.submitted || s.touched)"
+                                class="wt-validation__message wt-text-center-xs wt-mt-xs-1"
+                              >{{ s.errors.signInErrorMsg }}</div>
                             </div>
                           </div>
 
@@ -206,7 +210,7 @@
                                 class="wt-mb-xs-1 wt-text-caption-title"
                                 for="displayname"
                               >
-                                Password
+                                Display Name
                               </label>
                               <input
                                 class="wt-input"
