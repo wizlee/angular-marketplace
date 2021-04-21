@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   isLogin: boolean; // TODO: use auth service instead of a local variable
   defaultUserUrls: {};
   loginModalId: string;
+  userAvatar: string;
 
   constructor(private modalService: ModalService) {}
 
@@ -49,44 +50,61 @@ export class LoginComponent implements OnInit {
     this.modalService.close(this.loginModalId);
   }
 
-  onSignIn(f: NgForm) {
-    f.control.markAllAsTouched();
-
-    const username = f.value.username;
-    if (username) {
-      if (username in COMETCHAT_CONSTANTS.UIDs) {
-        CometChat.login(
-          COMETCHAT_CONSTANTS.UIDs[username],
-          COMETCHAT_CONSTANTS.AUTH_KEY
-        ).then(
-          (user) => {
-            console.log("Login Successful:", { user });
-            this.isLogin = true;
-            this.closeModal(f);
-          },
-          (error) => {
-            f.control.setErrors({
-              signInErrorMsg: `Login failed: Check your CometChat App ID & Secret`,
-            });
-            console.log("Login failed with exception:", { error });
-          }
-        );
-      } else {
-        f.control.setErrors({
-          signInErrorMsg: `User '${username}' is not one of the default users. To use a default user without registering, please select an avatar. `,
-        });
-      }
-    }
-  }
-
   onSelectUser(f: NgForm, user: string) {
     f.setValue({ username: user });
     this.onSignIn(f);
   }
 
+  onSignIn(f: NgForm) {
+    f.control.markAllAsTouched();
+
+    const username = f.value.username;
+    const name =
+      username in COMETCHAT_CONSTANTS.UIDs
+        ? COMETCHAT_CONSTANTS.UIDs[username]
+        : username;
+    CometChat.login(name, COMETCHAT_CONSTANTS.AUTH_KEY).then(
+      (user) => {
+        console.log("Login Successful:", { user });
+        this.isLogin = true;
+        this.userAvatar = user.getAvatar();
+        this.closeModal(f);
+      },
+      (error) => {
+        console.log("Login failed with exception:", { error });
+        if (username in COMETCHAT_CONSTANTS.UIDs) {
+          f.control.setErrors({
+            signInErrorMsg: `Login failed: Check your CometChat App ID & Auth Key in src/CONSTS.ts`,
+          });
+        } else {
+          f.control.setErrors({
+            signInErrorMsg: `User '${username}' is not one of the default users. To use a default user without registering, please select an avatar. `,
+          });
+        }
+      }
+    );
+  }
+
   onRegister(f: NgForm) {
     f.control.markAllAsTouched();
-    console.log(f.value); // { first: '', last: '' }
-    console.log(f.valid); // false
+
+    const username = f.value.registerUsername;
+    const displayname = f.value.displayname;
+    if (username && displayname) {
+      const cometChatUser = new CometChat.User(username);
+      cometChatUser.setName(displayname);
+      CometChat.createUser(cometChatUser, COMETCHAT_CONSTANTS.AUTH_KEY).then(
+        (user) => {
+          console.log("User created", user);
+          this.closeModal(f);
+        },
+        (error) => {
+          f.control.setErrors({
+            registerErrorMsg: `User registration failed: Check your CometChat App ID & Auth Key in src/CONSTS.ts`,
+          });
+          console.log("User registration error", error);
+        }
+      );
+    }
   }
 }

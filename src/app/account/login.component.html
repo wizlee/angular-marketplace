@@ -2,7 +2,15 @@
   class="wt-btn wt-btn--small wt-btn--transparent wt-mr-xs-1 inline-overlay-trigger signin-header-action select-signin"
   (click)="openModal()"
 >
-  {{ isLogin == true ? "Log out" : "Sign in" }}
+  <div *ngIf="isLogin" style="display: flex;">
+    <img class="wt-circle wt-horizontal-center tag-image"
+        src="{{ userAvatar }}" alt="user"
+        width="35em" height="35em">
+    <span>[Log out]</span>
+  </div>
+  <div *ngIf="!isLogin">
+    Sign in
+  </div>
 </button>
 
 <jw-modal id="{{ loginModalId }}">
@@ -201,7 +209,7 @@
                                 ngModel required
                               />
                               <div
-                                *ngIf="r.invalid && registerUsername.invalid && ( registerUsername.dirty || registerUsername.touched)"
+                                *ngIf="registerUsername.invalid && ( registerUsername.dirty || registerUsername.touched)"
                                 class="wt-validation__message wt-mt-xs-1"
                               >Can't be blank</div>
                             </div>
@@ -219,7 +227,7 @@
                                 ngModel required
                               />
                               <div
-                                *ngIf="r.invalid && displayname.invalid && ( displayname.dirty || displayname.touched)"
+                                *ngIf="displayname.invalid && ( displayname.dirty || displayname.touched)"
                                 class="wt-validation__message wt-mt-xs-1"
                               >Can't be blank</div>
                             </div>
@@ -233,6 +241,10 @@
                                 >
                                   Register
                                 </button>
+                                <div
+                                  *ngIf="r?.errors?.registerErrorMsg && r.invalid && (r.submitted || r.touched)"
+                                  class="wt-validation__message wt-text-center-xs wt-mt-xs-1"
+                                >{{ s.errors.registerErrorMsg }}</div>
                               </div>
                             </div>
 
