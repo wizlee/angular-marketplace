@@ -9,6 +9,8 @@ import { FooterComponent } from './footer.component';
 import { ContentComponent } from './content.component';
 
 import { AccountModule } from "../account/account.module";
+import { ChatModule } from "../chat/chat.module";
+import { ProductModule } from "../product/product.module";
 
 @NgModule({
   declarations: [
@@ -20,7 +22,7 @@ import { AccountModule } from "../account/account.module";
     FooterComponent,
     ContentComponent,
   ],
-  imports: [CommonModule, AccountModule],
+  imports: [CommonModule, AccountModule, ChatModule, ProductModule],
   exports: [
     HeaderComponent,
     ProductBannerComponent,
