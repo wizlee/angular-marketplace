@@ -12,9 +12,14 @@ import { ChatModule } from "./chat/chat.module";
     BrowserModule,
     RouterModule.forRoot([
       {
+        path: "home",
+        loadChildren: () => HomeModule,
+      },
+      {
         path: "conversation",
         loadChildren: () => ChatModule,
       },
+      { path: "**", redirectTo: "/home", pathMatch: "full" },
     ]),
     HomeModule,
   ],

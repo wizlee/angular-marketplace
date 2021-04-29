@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  templateUrl: './comet-chat-conversation.component.html',
+  selector: 'app-invalid',
+  templateUrl: './invalid.component.html',
   styles: [
   ]
 })
-export class CometChatConversationComponent implements OnInit {
+export class InvalidComponent implements OnInit {
 
   constructor() { }
 

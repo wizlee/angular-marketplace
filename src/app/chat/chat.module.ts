@@ -12,7 +12,7 @@ import { CometChatConversationListWithMessages } from "@cometchatComponents/Chat
     CommonModule,
     RouterModule.forChild([
       {
-        path: "",
+        path: "conversation",
         component: CometChatConversationComponent,
       },
     ]),
