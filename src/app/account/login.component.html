@@ -2,13 +2,13 @@
   class="wt-btn wt-btn--small wt-btn--transparent wt-mr-xs-1 inline-overlay-trigger signin-header-action select-signin"
   (click)="openModal()"
 >
-  <div *ngIf="isLogin" style="display: flex;">
+  <div *ngIf="auth.isLoggedIn()" style="display: flex;">
     <img class="wt-circle wt-horizontal-center tag-image"
         src="{{ userAvatar }}" alt="user"
         width="35em" height="35em">
     <span>[Log out]</span>
   </div>
-  <div *ngIf="!isLogin">
+  <div *ngIf="!auth.isLoggedIn()">
     Sign in
   </div>
 </button>

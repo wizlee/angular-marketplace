@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { ModalService } from "../_modal";
 import { CometChat } from "@cometchat-pro/chat";
 import { COMETCHAT_CONSTANTS } from "../../CONSTS";
+import { AuthService, User } from "./auth.service";
 
 @Component({
   selector: "app-login",
@@ -11,33 +12,32 @@ import { COMETCHAT_CONSTANTS } from "../../CONSTS";
   styleUrls: ["./login.component.css"],
 })
 export class LoginComponent implements OnInit {
-  isLogin: boolean; // TODO: use auth service instead of a local variable
   defaultUserUrls: {};
   loginModalId: string;
   userAvatar: string;
 
-  constructor(private modalService: ModalService) {}
+  constructor(private modalService: ModalService, public auth: AuthService) {}
 
   ngOnInit(): void {
-    this.isLogin = false;
+    if (this.auth.isLoggedIn()) {
+      this.userAvatar = this.auth.getUser()?.userAvatar;
+    }
     this.loginModalId = "login-modal";
     this.defaultUserUrls = COMETCHAT_CONSTANTS.imgUrls;
   }
 
   openModal() {
-    if (this.isLogin) {
+    if (this.auth.isLoggedIn()) {
       CometChat.logout().then(
         (_) => {
-          //Logout completed successfully
           console.log("Logout completed successfully");
         },
         (error) => {
-          //Logout failed with exception
-          console.log("Logout failed with exception:", { error });
+          console.log(`Logout failed with exception: ${error}`);
         }
       );
 
-      this.isLogin = false;
+      this.auth.logout();
     } else {
       this.modalService.open(this.loginModalId);
     }
@@ -66,8 +66,13 @@ export class LoginComponent implements OnInit {
     CometChat.login(name, COMETCHAT_CONSTANTS.AUTH_KEY).then(
       (user) => {
         console.log("Login Successful:", { user });
-        this.isLogin = true;
-        this.userAvatar = user.getAvatar();
+        const userData: User = {
+          name: username,
+          isLoggedIn: true,
+          userAvatar: user.getAvatar(),
+        };
+        this.auth.setUser(userData);
+        this.userAvatar = userData.userAvatar;
         this.closeModal(f);
       },
       (error) => {
