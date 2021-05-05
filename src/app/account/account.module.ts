@@ -4,9 +4,10 @@ import { LoginComponent } from './login.component';
 import { FormsModule } from "@angular/forms";
 
 import { ModalModule } from "../_modal";
+import { NotLoginMessageComponent } from './not-login-message.component';
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [LoginComponent, NotLoginMessageComponent],
   imports: [CommonModule, ModalModule, FormsModule],
   exports: [LoginComponent],
 })

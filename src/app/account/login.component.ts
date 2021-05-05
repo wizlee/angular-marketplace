@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from "@angular/router";
 
 import { ModalService } from "../_modal";
 import { CometChat } from "@cometchat-pro/chat";
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
   loginModalId: string;
   userAvatar: string;
 
-  constructor(private modalService: ModalService, public auth: AuthService) {}
+  constructor(public auth: AuthService, private modalService: ModalService, private router: Router) {}
 
   ngOnInit(): void {
     if (this.auth.isLoggedIn()) {
@@ -26,7 +27,7 @@ export class LoginComponent implements OnInit {
     this.defaultUserUrls = COMETCHAT_CONSTANTS.imgUrls;
   }
 
-  openModal() {
+  openModal(): void {
     if (this.auth.isLoggedIn()) {
       CometChat.logout().then(
         (_) => {
@@ -38,24 +39,25 @@ export class LoginComponent implements OnInit {
       );
 
       this.auth.logout();
+      this.router.navigate(["home"]);
     } else {
       this.modalService.open(this.loginModalId);
     }
   }
 
-  closeModal(f: NgForm = undefined) {
+  closeModal(f: NgForm = undefined): void {
     if (f) {
       f.reset();
     }
     this.modalService.close(this.loginModalId);
   }
 
-  onSelectUser(f: NgForm, user: string) {
+  onSelectUser(f: NgForm, user: string): void {
     f.setValue({ username: user });
     this.onSignIn(f);
   }
 
-  onSignIn(f: NgForm) {
+  onSignIn(f: NgForm): void {
     f.control.markAllAsTouched();
 
     const username = f.value.username;
@@ -90,7 +92,7 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  onRegister(f: NgForm) {
+  onRegister(f: NgForm): void {
     f.control.markAllAsTouched();
 
     const username = f.value.registerUsername;

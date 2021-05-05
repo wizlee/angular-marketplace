@@ -5,6 +5,7 @@ import { InboxComponent } from './inbox.component';
 import { CometChatConversationComponent } from './comet-chat-conversation.component';
 
 import { CometChatConversationListWithMessages } from "@cometchatComponents/Chats/CometChat-conversation-list-with-messages/cometchat-conversation-list-with-messages.module";
+import { AuthGuard } from "../account/auth.guard";
 
 @NgModule({
   declarations: [InboxComponent, CometChatConversationComponent],
@@ -14,6 +15,7 @@ import { CometChatConversationListWithMessages } from "@cometchatComponents/Chat
       {
         path: "conversation",
         component: CometChatConversationComponent,
+        canActivate: [AuthGuard],
       },
     ]),
     CometChatConversationListWithMessages,

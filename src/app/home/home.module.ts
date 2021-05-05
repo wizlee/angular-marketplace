@@ -8,11 +8,12 @@ import { ProductListComponent } from './product-list.component';
 import { AboutBannerComponent } from './about-banner.component';
 import { FooterComponent } from './footer.component';
 import { ContentComponent } from './content.component';
+import { InvalidComponent } from './invalid.component';
 
 import { AccountModule } from "../account/account.module";
 import { ChatModule } from "../chat/chat.module";
 import { ProductModule } from "../product/product.module";
-import { InvalidComponent } from './invalid.component';
+import { FaceMaskProductListComponent } from "../product/face-mask-product-list.component";
 
 @NgModule({
   declarations: [
@@ -29,16 +30,16 @@ import { InvalidComponent } from './invalid.component';
     CommonModule,
     RouterModule.forChild([
       {
-        path: "",
+        path: "home",
         component: ContentComponent,
       },
       {
-        path: "**",
-        component: InvalidComponent,
+        path: "facemask",
+        component: FaceMaskProductListComponent,
       },
     ]),
-    AccountModule,
     ChatModule,
+    AccountModule,
     ProductModule,
   ],
   exports: [
@@ -48,8 +49,7 @@ import { InvalidComponent } from './invalid.component';
     ProductListComponent,
     AboutBannerComponent,
     FooterComponent,
-    ContentComponent,
-    InvalidComponent,
+    ContentComponent
   ],
 })
 export class HomeModule {}

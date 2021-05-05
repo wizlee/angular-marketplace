@@ -1,27 +1,16 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from "@angular/router";
 
 import { AppComponent } from './app.component';
 import { HomeModule } from './home/home.module';
-import { ChatModule } from "./chat/chat.module";
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    RouterModule.forRoot([
-      {
-        path: "home",
-        loadChildren: () => HomeModule,
-      },
-      {
-        path: "conversation",
-        loadChildren: () => ChatModule,
-      },
-      { path: "**", redirectTo: "/home", pathMatch: "full" },
-    ]),
     HomeModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
