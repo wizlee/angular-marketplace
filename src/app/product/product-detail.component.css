@@ -2165,3 +2165,14 @@ a.wt-arrow-link.wt-arrow-link--back:after {
 button.wt-content-toggle--btn {
   cursor: pointer;
 }
+/* #dockedCometChat {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  margin-left: 2vw;
+  margin-bottom: 2vh;
+  z-index: 8888;
+  width: 60px;
+  height: 60px;
+  background: red;
+} */

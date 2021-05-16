@@ -37,4 +37,5 @@ export class User {
   name: string;
   isLoggedIn: boolean;
   userAvatar: string;
+  isDefaultUser: boolean;
 }

@@ -61,10 +61,8 @@ export class LoginComponent implements OnInit {
     f.control.markAllAsTouched();
 
     const username = f.value.username;
-    const name =
-      username in COMETCHAT_CONSTANTS.UIDs
-        ? COMETCHAT_CONSTANTS.UIDs[username]
-        : username;
+    const isDefaultUser = username in COMETCHAT_CONSTANTS.UIDs;
+    const name = isDefaultUser ? COMETCHAT_CONSTANTS.UIDs[username] : username;
     CometChat.login(name, COMETCHAT_CONSTANTS.AUTH_KEY).then(
       (user) => {
         console.log("Login Successful:", { user });
@@ -72,6 +70,7 @@ export class LoginComponent implements OnInit {
           name: username,
           isLoggedIn: true,
           userAvatar: user.getAvatar(),
+          isDefaultUser: isDefaultUser,
         };
         this.auth.setUser(userData);
         this.userAvatar = userData.userAvatar;
