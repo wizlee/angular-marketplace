@@ -11,6 +11,7 @@ import { AuthService, User } from "../account/auth.service";
   styleUrls: ["./product-detail.component.css"],
 })
 export class ProductDetailComponent implements OnInit, OnDestroy {
+  isChatWidgetInitialized: boolean;
   isChatWidgetLaunched: boolean;
 
   constructor(
@@ -20,34 +21,21 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.isChatWidgetInitialized = false;
     this.isChatWidgetLaunched = false;
     // this.hero$ = this.route.paramMap.pipe(
     //   switchMap((params: ParamMap) => this.service.getProduct(params.get("id")))
     // );
-    if (!this.auth.isLoggedIn())
-      return;
-    CometChatWidget.init({
-      appID: COMETCHAT_CONSTANTS.APP_ID,
-      appRegion: COMETCHAT_CONSTANTS.REGION,
-      authKey: COMETCHAT_CONSTANTS.AUTH_KEY,
-    }).then(
+    if (!this.auth.isLoggedIn()) return;
+
+    this.initCometChatWidget().then(
       () => {
-        let userObj: User = this.auth.getUser();
-        CometChatWidget.login({
-          uid: userObj.isDefaultUser
-            ? COMETCHAT_CONSTANTS.UIDs[userObj.name]
-            : userObj.name,
-        }).then(
-          () => {
-            this.launchCometChatWidget("thebestfacemaskshop", false);
-          },
-          (error) => {
-            console.log("User login failed with error:", error);
-          }
-        );
+        this.isChatWidgetInitialized = true;
+        // launch and keep the chat widget minimized
+        this.launchCometChatWidget("thebestfacemaskshop", false);
       },
       (error) => {
-        console.log("Initialization failed with error:", error);
+        console.log("User login failed with error:", error);
       }
     );
   }
@@ -61,11 +49,50 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
 
   onMessageSeller(): void {
     if (this.auth.isLoggedIn()) {
-      this.launchCometChatWidget("thebestfacemaskshop", true);
+      this.initCometChatWidget().then(
+        () => {
+          this.isChatWidgetInitialized = true;
+          // launch and open the chat widget
+          this.launchCometChatWidget("thebestfacemaskshop", true);
+        },
+        (error) => {
+          this.isChatWidgetInitialized = false;
+          console.log("User login failed with error:", error);
+        }
+      );
     }
   }
 
-  private launchCometChatWidget(sellerUID: string, isOpenWidget: boolean) {
+  private initCometChatWidget() {
+    if (this.isChatWidgetInitialized) {
+      return new Promise((resolve, _) => {
+        resolve(true);
+      });
+    }
+
+    return CometChatWidget.init({
+      appID: COMETCHAT_CONSTANTS.APP_ID,
+      appRegion: COMETCHAT_CONSTANTS.REGION,
+      authKey: COMETCHAT_CONSTANTS.AUTH_KEY,
+    }).then(
+      () => {
+        let userObj: User = this.auth.getUser();
+        return CometChatWidget.login({
+          uid: userObj.isDefaultUser
+            ? COMETCHAT_CONSTANTS.UIDs[userObj.name]
+            : userObj.name,
+        })
+      },
+      (error) => {
+        console.log("Initialization failed with error:", error);
+        return new Promise((resolve, _) => {
+          resolve(false);
+        })
+      }
+    );
+  }
+
+  private launchCometChatWidget(sellerUID: string, isOpenWidget: boolean): void {
     if (this.isChatWidgetLaunched) {
       if (isOpenWidget) {
         CometChatWidget.openOrCloseChat(true);
