@@ -1,4 +1,5 @@
 export const COMETCHAT_CONSTANTS = {
+  // TODO: insert APP_ID, REGION and AUTH_KEY
   APP_ID: "APP_ID",
   REGION: "REGION",
   AUTH_KEY: "AUTH_KEY",

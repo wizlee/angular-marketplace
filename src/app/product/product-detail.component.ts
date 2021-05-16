@@ -91,7 +91,9 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
         }
       },
       (error) => {
-        console.log(`Widget Launching failed with error: ${error}\n Have you insert yourr WidgetID?`);
+        console.log(
+          `Widget Launching failed with error: ${error}\n Have you insert your WidgetID?`
+        );
       }
     );
   }
