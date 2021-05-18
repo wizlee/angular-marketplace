@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { User } from "./user";
 
 const USER_OBJ_NAME: string = "user";
 
@@ -31,11 +32,4 @@ export class AuthService {
     }
     return userObj?.isLoggedIn ? true : false;
   }
-}
-
-export class User {
-  name: string;
-  isLoggedIn: boolean;
-  userAvatar: string;
-  isDefaultUser: boolean;
 }

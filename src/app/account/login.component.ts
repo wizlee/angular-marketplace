@@ -5,7 +5,8 @@ import { Router } from "@angular/router";
 import { ModalService } from "../_modal";
 import { CometChat } from "@cometchat-pro/chat";
 import { COMETCHAT_CONSTANTS } from "../../CONSTS";
-import { AuthService, User } from "./auth.service";
+import { AuthService} from "./auth.service";
+import { User } from "./user";
 
 @Component({
   selector: "app-login",

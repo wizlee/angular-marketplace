@@ -1,4 +1,5 @@
 /*! For license information please see cometchatwidget.js.LICENSE.txt */
+// See note at the bottom of this file for why this is saved locally
 (() => {
   var e,
     t,
@@ -39840,6 +39841,18 @@
     (window.CometChatWidget = a.default);
   })();
 
+// =========================NOTE:=========================
+// The right thing to do will be to create an Angular service that get and return window.CometChatWidget,
+// followed by injecting that into any component that needs to access CometChatWidget
+// Use export instead as a quick hack to reduce code for simplicity of a tutorial
+//
+// Simplicity is also the reason that this minified JavaScript is downloaded and saved locally.
+// It is because
+//  1. this is not yet supported in Angular yet but only for vanilla JavaScript.
+//  2. the need to modify docked widget to access an additional `target` parameter similar to the embedded widget
+//     to allow the widget to be put anywhere in a webpage instead of it generating at root of the component HTML.
+//     This solve the issue of the widget keeps generating when navigate away and back to the component launching
+//     CometChatWidget.
+//  3. the docked widget has a nice UI ;)
 let CometChatWidget = window.CometChatWidget;
 export { CometChatWidget };
-//# sourceMappingURL=cometchatwidget.js.map

@@ -1,10 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { switchMap } from "rxjs/operators";
+import { ActivatedRoute } from '@angular/router';
 
 import { CometChatWidget } from "../../assets/cometchatwidget.js";
 import { COMETCHAT_CONSTANTS } from "../../CONSTS";
-import { AuthService, User } from "../account/auth.service";
+import { AuthService } from "../account/auth.service";
+import { User } from "../account/user";
+import { GetProductDetailService } from "./_api/get-product-detail.service";
+import { Facemask } from "./_api/ProductDetail";
 
 @Component({
   templateUrl: "./product-detail.component.html",
@@ -13,26 +15,34 @@ import { AuthService, User } from "../account/auth.service";
 export class ProductDetailComponent implements OnInit, OnDestroy {
   isChatWidgetInitialized: boolean;
   isChatWidgetLaunched: boolean;
+  facemask: Facemask;
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
-    private auth: AuthService
+    private auth: AuthService,
+    private productDetail: GetProductDetailService
   ) {}
 
   ngOnInit(): void {
     this.isChatWidgetInitialized = false;
     this.isChatWidgetLaunched = false;
-    // this.hero$ = this.route.paramMap.pipe(
-    //   switchMap((params: ParamMap) => this.service.getProduct(params.get("id")))
-    // );
-    if (!this.auth.isLoggedIn()) return;
 
+    // As a simplified use case, this.route.snapshot is used because
+    // this component will not be reused
+    //
+    // For a real world use case, this component will most likely
+    // contains links to similar product, thus this component will be
+    // reused to populate with that product's detail.
+    // In this scenario, rxjs Observable and Operators will be a better choice
+    const id: number = parseInt(this.route.snapshot.paramMap.get("id"));
+    this.facemask = this.productDetail.getFacemaskDetail(id);
+
+    if (!this.auth.isLoggedIn()) return;
     this.initCometChatWidget().then(
       () => {
         this.isChatWidgetInitialized = true;
         // launch and keep the chat widget minimized
-        this.launchCometChatWidget("thebestfacemaskshop", false);
+        this.launchCometChatWidget(this.facemask.shop, false);
       },
       (error) => {
         console.log("User login failed with error:", error);
@@ -53,7 +63,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
         () => {
           this.isChatWidgetInitialized = true;
           // launch and open the chat widget
-          this.launchCometChatWidget("thebestfacemaskshop", true);
+          this.launchCometChatWidget(this.facemask.shop, true);
         },
         (error) => {
           this.isChatWidgetInitialized = false;
@@ -81,18 +91,21 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
           uid: userObj.isDefaultUser
             ? COMETCHAT_CONSTANTS.UIDs[userObj.name]
             : userObj.name,
-        })
+        });
       },
       (error) => {
         console.log("Initialization failed with error:", error);
         return new Promise((resolve, _) => {
           resolve(false);
-        })
+        });
       }
     );
   }
 
-  private launchCometChatWidget(sellerUID: string, isOpenWidget: boolean): void {
+  private launchCometChatWidget(
+    sellerUID: string,
+    isOpenWidget: boolean
+  ): void {
     if (this.isChatWidgetLaunched) {
       if (isOpenWidget) {
         CometChatWidget.openOrCloseChat(true);
