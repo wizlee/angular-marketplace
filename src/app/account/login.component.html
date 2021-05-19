@@ -2,13 +2,13 @@
   class="wt-btn wt-btn--small wt-btn--transparent wt-mr-xs-1 inline-overlay-trigger signin-header-action select-signin"
   (click)="openModal()"
 >
-  <div *ngIf="auth.isLoggedIn()" style="display: flex;">
+  <div *ngIf="authService.isLoggedIn()" style="display: flex;">
     <img class="wt-circle wt-horizontal-center tag-image"
         src="{{ userAvatar }}" alt="user"
         width="35em" height="35em">
     <span>[Log out]</span>
   </div>
-  <div *ngIf="!auth.isLoggedIn()">
+  <div *ngIf="!authService.isLoggedIn()">
     Sign in
   </div>
 </button>
@@ -74,22 +74,22 @@
                             </div>
                           </div>
 
-                        <div class="tags-section-container tag-cards-section-container-with-images">
-                          <ul class="wt-display-flex-xs tag-cards-with-image wt-flex-wrap">
-                            <li
-                              class="wt-display-flex-xs wt-flex-direction-column-xs wt-ml-xs-1 wt-mr-xs-1 wt-mt-xs-2 wt-mb-xs-4"
-                              *ngFor="let item of defaultUserUrls | keyvalue"
-                              (click)="onSelectUser(s, item.key)">
-                              <a class="wt-transparent-card tag-card-with-image wt-mb-xs-2" href="javascript:void(0)">
-                                <img class="wt-circle wt-horizontal-center tag-image wt-mb-xs-1 wt-b-xs"
-                                  src="{{ item.value }}" alt="no-image">
-                                <h4 class="tag-card-title wt-text-caption-title wt-text-center-xs wt-line-height-tight wt-text-truncate--multi-line tag-with-image-text-internal">
-                                    {{ item.key }}
-                                </h4>
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
+                          <div class="tags-section-container tag-cards-section-container-with-images">
+                            <ul class="wt-display-flex-xs tag-cards-with-image wt-flex-wrap">
+                              <li
+                                class="wt-display-flex-xs wt-flex-direction-column-xs wt-ml-xs-1 wt-mr-xs-1 wt-mt-xs-2 wt-mb-xs-4"
+                                *ngFor="let item of defaultUserUrls | keyvalue"
+                                (click)="onSelectUser(s, item.key)">
+                                <a class="wt-transparent-card tag-card-with-image wt-mb-xs-2" href="javascript:void(0)">
+                                  <img class="wt-circle wt-horizontal-center tag-image wt-mb-xs-1 wt-b-xs"
+                                    src="{{ item.value }}" alt="no-image">
+                                  <h4 class="tag-card-title wt-text-caption-title wt-text-center-xs wt-line-height-tight wt-text-truncate--multi-line tag-with-image-text-internal">
+                                      {{ item.key }}
+                                  </h4>
+                                </a>
+                              </li>
+                            </ul>
+                          </div>
 
                           <div class="wt-mb-xs-2 wt-validation">
                             <label

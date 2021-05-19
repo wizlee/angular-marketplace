@@ -6,7 +6,7 @@ import { COMETCHAT_CONSTANTS } from "../../CONSTS";
 import { AuthService } from "../account/auth.service";
 import { User } from "../account/user";
 import { GetProductDetailService } from "./_api/get-product-detail.service";
-import { Facemask } from "./_api/ProductDetail";
+import { Facemask } from "./_api/product-detail";
 
 @Component({
   templateUrl: "./product-detail.component.html",
@@ -19,8 +19,8 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private auth: AuthService,
-    private productDetail: GetProductDetailService
+    private authService: AuthService,
+    private productService: GetProductDetailService
   ) {}
 
   ngOnInit(): void {
@@ -35,9 +35,9 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     // reused to populate with that product's detail.
     // In this scenario, rxjs Observable and Operators will be a better choice
     const id: number = parseInt(this.route.snapshot.paramMap.get("id"));
-    this.facemask = this.productDetail.getFacemaskDetail(id);
+    this.facemask = this.productService.getFacemaskDetail(id);
 
-    if (!this.auth.isLoggedIn()) return;
+    if (!this.authService.isLoggedIn()) return;
     this.initCometChatWidget().then(
       () => {
         this.isChatWidgetInitialized = true;
@@ -51,14 +51,14 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.auth.isLoggedIn()) {
+    if (this.authService.isLoggedIn()) {
       CometChatWidget.openOrCloseChat(false);
       CometChatWidget.logout();
     }
   }
 
   onMessageSeller(): void {
-    if (this.auth.isLoggedIn()) {
+    if (this.authService.isLoggedIn()) {
       this.initCometChatWidget().then(
         () => {
           this.isChatWidgetInitialized = true;
@@ -86,7 +86,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
       authKey: COMETCHAT_CONSTANTS.AUTH_KEY,
     }).then(
       () => {
-        let userObj: User = this.auth.getUser();
+        let userObj: User = this.authService.getUser();
         return CometChatWidget.login({
           uid: userObj.isDefaultUser
             ? COMETCHAT_CONSTANTS.UIDs[userObj.name]

@@ -721,22 +721,6 @@ svg:not(:root) {
 .wt-btn.wt-btn--primary::before, .wt-btn.wt-btn--primary::after, .wt-btn.wt-btn--filled::before, .wt-btn.wt-btn--filled::after {
 	background: #222222;
 }
-.wt-validation .wt-validation__message {
-	color: #a61a2e;
-	margin-top: 6px;
-	font-size: 16px;
-	line-height: 28px;
-	font-weight: 300;
-	font-family: "Graphik Webfont",-apple-system,BlinkMacSystemFont,"Roboto","Droid Sans","Segoe UI","Helvetica",Arial,sans-serif;
-	transition: opacity 200ms ease-in;
-}
-.wt-validation .wt-validation__message.wt-validation__message--is-hidden {
-	visibility: hidden;
-	opacity: 0;
-	height: 0px;
-	margin-top: 0px;
-	overflow: hidden;
-}
 .wt-checkbox {
 	display: flex;
 	align-items: center;

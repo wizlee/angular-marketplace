@@ -18,18 +18,18 @@ export class LoginComponent implements OnInit {
   loginModalId: string;
   userAvatar: string;
 
-  constructor(public auth: AuthService, private modalService: ModalService, private router: Router) {}
+  constructor(public authService: AuthService, private modalService: ModalService, private router: Router) {}
 
   ngOnInit(): void {
-    if (this.auth.isLoggedIn()) {
-      this.userAvatar = this.auth.getUser()?.userAvatar;
+    if (this.authService.isLoggedIn()) {
+      this.userAvatar = this.authService.getUser()?.userAvatar;
     }
     this.loginModalId = "login-modal";
     this.defaultUserUrls = COMETCHAT_CONSTANTS.imgUrls;
   }
 
   openModal(): void {
-    if (this.auth.isLoggedIn()) {
+    if (this.authService.isLoggedIn()) {
       CometChat.logout().then(
         (_) => {
           console.log("Logout completed successfully");
@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
         }
       );
 
-      this.auth.logout();
+      this.authService.logout();
       this.router.navigate(["home"]);
     } else {
       this.modalService.open(this.loginModalId);
@@ -73,7 +73,7 @@ export class LoginComponent implements OnInit {
           userAvatar: user.getAvatar(),
           isDefaultUser: isDefaultUser,
         };
-        this.auth.setUser(userData);
+        this.authService.setUser(userData);
         this.userAvatar = userData.userAvatar;
         this.closeModal(f);
       },

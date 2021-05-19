@@ -9,9 +9,8 @@ export interface Facemask {
   hasDiscount: boolean;
   discountedPrice: string;
   discountPercent: string;
+  isFreeShipping: boolean;
   image: string;
-}
-
-export interface ProductDetail {
-  facemasks: Facemask[];
+  thumbnail: string;
+  isVisible: boolean; // this is a workaround for demonstrating seller adding goods
 }

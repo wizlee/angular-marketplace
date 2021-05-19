@@ -1,16 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 
+import { GetProductDetailService } from "./_api/get-product-detail.service";
+import { Facemask } from "./_api/product-detail";
+
 @Component({
   templateUrl: "./face-mask-product-list.component.html",
   styles: [],
 })
 export class FaceMaskProductListComponent implements OnInit {
-  constructor(private router: Router) {}
+  facemasks: Facemask[];
 
-  ngOnInit(): void {}
+  constructor(
+    private router: Router,
+    private productService: GetProductDetailService
+  ) {}
 
-  onViewFacemask(id: string): void {
-    this.router.navigate(["/facemask", "detail", id]);
+  ngOnInit(): void {
+    this.facemasks = this.productService.getOnSaleFacemasks();
+  }
+
+  onViewFacemask(id: number): void {
+    const productId: number = this.productService.getFacemaskProductIdForOnSale(id);
+    this.router.navigate(["/facemask", "detail", productId.toString()]);
   }
 }
