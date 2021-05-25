@@ -1,4 +1,6 @@
 # https://www.gitpod.io/docs/prebuilds
+# To trigger prebuild for your repo
+# https://gitpod.io/#prebuild/https://github.com/<github username>/<repo name>
 # List the ports you want to expose and what to do when they are served. See https://www.gitpod.io/docs/config-ports/
 ports:
   - port: 4200
