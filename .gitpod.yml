@@ -11,5 +11,5 @@ tasks:
       touch /tmp/.npm-lock
       npm install
       rm /tmp/.npm-lock
-  - init: sleep 1 && while [ -f /tmp/.npm-lock ]; do sleep 1; done
+  - init: sleep 5 && while [ -f /tmp/.npm-lock ]; do sleep 5; done
     command: npm start
