@@ -1,0 +1,18 @@
+# https://www.gitpod.io/docs/prebuilds
+image:
+  file: .gitpod.Dockerfile
+
+# List the ports you want to expose and what to do when they are served. See https://www.gitpod.io/docs/config-ports/
+ports:
+  - port: 4200
+    onOpen: notify
+    visibility: public
+
+# List the start up tasks. You can start them in parallel in multiple terminals. See https://www.gitpod.io/docs/config-start-tasks/
+tasks:
+  - init: |
+      touch /tmp/.npm-lock
+      npm install
+      rm /tmp/.npm-lock
+  - init: sleep 1 && while [ -f /tmp/.npm-lock ]; do sleep 1; done
+    command: npm start
