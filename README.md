@@ -2,9 +2,9 @@
 
 Read the full tutorial here:
 
-[**>> How to Build a Marketplace Site With Angular (Etsy/Amazon Clone)**](https://www.cometchat.com/tutorials/build-a-modern-android-chat-app-with-kotlin/?utm_source=github&utm_medium=link&utm_campaign=NAMEOFREPO)
+    NOT PUBLISH YET
 
-This examplen shows a marketplace app which allows buyers and sellers to chat with each other:
+This example shows a marketplace app which allows buyers and sellers to chat with each other:
 
 <SCREENSHOT - PLEASE ENSURE SCREENSHOTS LIVE IN A /screenshots FOLDER>
 
