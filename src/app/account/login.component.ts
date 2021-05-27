@@ -17,12 +17,14 @@ export class LoginComponent implements OnInit {
   defaultUserUrls: {};
   loginModalId: string;
   userAvatar: string;
+  userDisplayName: string;
 
   constructor(public authService: AuthService, private modalService: ModalService, private router: Router) {}
 
   ngOnInit(): void {
     if (this.authService.isLoggedIn()) {
       this.userAvatar = this.authService.getUser()?.userAvatar;
+      this.userDisplayName = this.authService.getUser()?.displayName;
     }
     this.loginModalId = "login-modal";
     this.defaultUserUrls = COMETCHAT_CONSTANTS.imgUrls;
@@ -68,7 +70,8 @@ export class LoginComponent implements OnInit {
       (user) => {
         console.log("Login Successful:", { user });
         const userData: User = {
-          name: username,
+          id: name,
+          displayName: user.getName(),
           isLoggedIn: true,
           userAvatar: user.getAvatar(),
           isDefaultUser: isDefaultUser,

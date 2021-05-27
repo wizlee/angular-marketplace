@@ -89,8 +89,8 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
         let userObj: User = this.authService.getUser();
         return CometChatWidget.login({
           uid: userObj.isDefaultUser
-            ? COMETCHAT_CONSTANTS.UIDs[userObj.name]
-            : userObj.name,
+            ? COMETCHAT_CONSTANTS.UIDs[userObj.id]
+            : userObj.id,
         });
       },
       (error) => {

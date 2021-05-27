@@ -1,5 +1,6 @@
 export interface User {
-  name: string;
+  id: string;
+  displayName: string;
   isLoggedIn: boolean;
   userAvatar: string;
   isDefaultUser: boolean;

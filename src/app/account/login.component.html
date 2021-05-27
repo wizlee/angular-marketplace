@@ -4,7 +4,7 @@
 >
   <div *ngIf="authService.isLoggedIn()" style="display: flex;">
     <img class="wt-circle wt-horizontal-center tag-image"
-        src="{{ userAvatar }}" alt="user"
+        src="{{ userAvatar }}" alt="{{ userDisplayName }}"
         width="35em" height="35em">
     <span>[Log out]</span>
   </div>
