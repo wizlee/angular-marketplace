@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from "@angular/router";
 
-import { ModalService } from "../_modal";
 import { CometChat } from "@cometchat-pro/chat";
 import { COMETCHAT_CONSTANTS } from "../../CONSTS";
-import { AuthService} from "./auth.service";
 import { User } from "./user";
+import { ModalService } from "../_modal";
+import { AuthService} from "./auth.service";
+import { GetProductDetailService } from '../product/_api/get-product-detail.service';
 
 @Component({
   selector: "app-login",
@@ -19,12 +20,18 @@ export class LoginComponent implements OnInit {
   userAvatar: string;
   userDisplayName: string;
 
-  constructor(public authService: AuthService, private modalService: ModalService, private router: Router) {}
+  constructor(
+    private router: Router,
+    public authService: AuthService,
+    private modalService: ModalService,
+    private productService: GetProductDetailService
+  ) {}
 
   ngOnInit(): void {
     if (this.authService.isLoggedIn()) {
       this.userAvatar = this.authService.getUser()?.userAvatar;
       this.userDisplayName = this.authService.getUser()?.displayName;
+      this.preRegisterExistingSellers();
     }
     this.loginModalId = "login-modal";
     this.defaultUserUrls = COMETCHAT_CONSTANTS.imgUrls;
@@ -56,33 +63,41 @@ export class LoginComponent implements OnInit {
   }
 
   onSelectUser(f: NgForm, user: string): void {
-    f.setValue({ username: user });
+    f.setValue({ uniqueId: user });
     this.onSignIn(f);
   }
 
   onSignIn(f: NgForm): void {
     f.control.markAllAsTouched();
 
-    const username = f.value.username;
+    // this will be the
+    //  1. displayname if user login by clicking on the default superhero users
+    //  2. uniqueId if user login by typing newly created CometChat user
+    const username = f.value.uniqueId;
     const isDefaultUser = username in COMETCHAT_CONSTANTS.UIDs;
-    const name = isDefaultUser ? COMETCHAT_CONSTANTS.UIDs[username] : username;
-    CometChat.login(name, COMETCHAT_CONSTANTS.AUTH_KEY).then(
+    const uniqueId = isDefaultUser
+      ? COMETCHAT_CONSTANTS.UIDs[username]
+      : username; // convert superhero displayname into unique id
+    CometChat.login(uniqueId, COMETCHAT_CONSTANTS.AUTH_KEY).then(
       (user) => {
         console.log("Login Successful:", { user });
         const userData: User = {
-          id: name,
+          id: uniqueId,
           displayName: user.getName(),
           isLoggedIn: true,
           userAvatar: user.getAvatar(),
           isDefaultUser: isDefaultUser,
         };
         this.authService.setUser(userData);
+        this.userDisplayName = userData.displayName;
         this.userAvatar = userData.userAvatar;
         this.closeModal(f);
+
+        this.preRegisterExistingSellers();
       },
       (error) => {
         console.log("Login failed with exception:", { error });
-        if (username in COMETCHAT_CONSTANTS.UIDs) {
+        if (isDefaultUser) {
           f.control.setErrors({
             signInErrorMsg: `Login failed: Check your CometChat App ID & Auth Key in src/CONSTS.ts`,
           });
@@ -98,23 +113,50 @@ export class LoginComponent implements OnInit {
   onRegister(f: NgForm): void {
     f.control.markAllAsTouched();
 
-    const username = f.value.registerUsername;
-    const displayname = f.value.displayname;
-    if (username && displayname) {
-      const cometChatUser = new CometChat.User(username);
+    const uniqueId = f.value.registerUniqueId;
+    const displayname = f.value.username;
+    if (uniqueId && displayname) {
+      this.registerCometChatUser(uniqueId, displayname, f);
+    }
+  }
+
+  private registerCometChatUser(uniqueId: string, displayname: string, f? : NgForm) {
+    const cometChatUser = new CometChat.User(uniqueId);
       cometChatUser.setName(displayname);
       CometChat.createUser(cometChatUser, COMETCHAT_CONSTANTS.AUTH_KEY).then(
         (user) => {
           console.log("User created", user);
-          this.closeModal(f);
+          if (f) {
+            this.closeModal(f);
+          }
         },
         (error) => {
-          f.control.setErrors({
-            registerErrorMsg: `User registration failed: Check your CometChat App ID & Auth Key in src/CONSTS.ts`,
-          });
+          if (f) {
+            f.control.setErrors({
+              registerErrorMsg: `User registration failed: Check your CometChat App ID & Auth Key in src/CONSTS.ts`,
+            });
+          }
           console.log("User registration error", error);
         }
       );
+  }
+
+  private preRegisterExistingSellers() {
+    if (this.authService.isLoggedIn()) {
+      for (let i = 0; i < this.productService.getFacemaskCount(); i++) {
+        const product = this.productService.getFacemaskDetail(i);
+        const shopName: string = product.shop;
+        const sellerName: string = product.seller;
+        CometChat.getUser(shopName).then(
+          (user) => {
+            console.log(`Seller: ${user.getName()} already registered:`);
+          },
+          (_) => {
+            console.log(`Registering for Seller: ${sellerName}, Shop Name: ${shopName}`);
+            this.registerCometChatUser(shopName, sellerName);
+          }
+        );
+      }
     }
   }
 }

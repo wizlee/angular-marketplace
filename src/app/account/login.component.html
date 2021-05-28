@@ -2,13 +2,19 @@
   class="wt-btn wt-btn--small wt-btn--transparent wt-mr-xs-1 inline-overlay-trigger signin-header-action select-signin"
   (click)="openModal()"
 >
-  <div *ngIf="authService.isLoggedIn()" style="display: flex;">
-    <img class="wt-circle wt-horizontal-center tag-image"
+  <div *ngIf="authService.isLoggedIn() && userAvatar" style="display: flex;">
+    <img class="wt-circle wt-horizontal-center"
         src="{{ userAvatar }}" alt="{{ userDisplayName }}"
         width="35em" height="35em">
     <span>[Log out]</span>
   </div>
-  <div *ngIf="!authService.isLoggedIn()">
+  <div *ngIf="authService.isLoggedIn() && !userAvatar" style="display: flex;">
+    <p class="wt-label wt-horizontal-center">
+      {{ userDisplayName }}
+      <sup>[Log out]</sup>
+    </p>
+  </div>
+  <div *ngIf="!authService.isLoggedIn()" class="wt-label">
     Sign in
   </div>
 </button>
@@ -94,18 +100,18 @@
                           <div class="wt-mb-xs-2 wt-validation">
                             <label
                               class="wt-mb-xs-1 wt-text-caption-title"
-                              for="username"
+                              for="uniqueId"
                             >
-                              Username
+                              Unique ID / Shop name
                             </label>
                             <input
                               class="wt-input"
-                              name="username"
-                              #username="ngModel"
+                              name="uniqueId"
+                              #uniqueId="ngModel"
                               ngModel required
                             />
                             <div
-                              *ngIf="username.invalid && (username.dirty || username.touched)"
+                              *ngIf="uniqueId.invalid && (uniqueId.dirty || uniqueId.touched)"
                               class="wt-validation__message wt-mt-xs-1"
                             >Can't be blank</div>
                           </div>
@@ -198,36 +204,36 @@
                             <div class="wt-mb-xs-2 wt-validation">
                               <label
                                 class="wt-mb-xs-1 wt-text-caption-title"
-                                for="registerUsername"
+                                for="registerUniqueId"
                               >
-                                Username
+                                Unique ID / Shop Name
                               </label>
                               <input
                                 class="wt-input"
-                                name="registerUsername"
-                                #registerUsername="ngModel"
+                                name="registerUniqueId"
+                                #registerUniqueId="ngModel"
                                 ngModel required
                               />
                               <div
-                                *ngIf="registerUsername.invalid && ( registerUsername.dirty || registerUsername.touched)"
+                                *ngIf="registerUniqueId.invalid && ( registerUniqueId.dirty || registerUniqueId.touched)"
                                 class="wt-validation__message wt-mt-xs-1"
                               >Can't be blank</div>
                             </div>
                             <div class="wt-mb-xs-2 wt-validation">
                               <label
                                 class="wt-mb-xs-1 wt-text-caption-title"
-                                for="displayname"
+                                for="username"
                               >
-                                Display Name
+                                Username / Display Name
                               </label>
                               <input
                                 class="wt-input"
-                                name="displayname"
-                                #displayname="ngModel"
+                                name="username"
+                                #username="ngModel"
                                 ngModel required
                               />
                               <div
-                                *ngIf="displayname.invalid && ( displayname.dirty || displayname.touched)"
+                                *ngIf="username.invalid && ( username.dirty || username.touched)"
                                 class="wt-validation__message wt-mt-xs-1"
                               >Can't be blank</div>
                             </div>

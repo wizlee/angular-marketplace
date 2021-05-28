@@ -15,12 +15,14 @@ export class GetProductDetailService {
     //
     // The initial state of all the products are loaded from facemasks.json into the browser localstorage.
     // Then, the app will refer to the localstorage to determine if a specific product is added for sale.
-    if (!window.localStorage[PRODUCT_METADATA]) {
-      this.initAndStoreProductMetaData();
+    if (window.localStorage[PRODUCT_METADATA]) {
+      // always remove so that newly added product in facemasks.json will be added into the metadata
+      window.localStorage.removeItem(PRODUCT_METADATA);
     }
+    this.initProductMetadataLocalStorage();
   }
 
-  private initAndStoreProductMetaData(): void {
+  private initProductMetadataLocalStorage(): void {
     let facemaskMetadata: Metadata[] = [];
     MockAPI.facemasks.forEach((facemask, index) => {
       facemaskMetadata.push({
@@ -53,7 +55,7 @@ export class GetProductDetailService {
         return facemaskMetadata[index].isProductAdded;
       } else {
         console.warn("Product metadata not in localstorage");
-        this.initAndStoreProductMetaData();
+        this.initProductMetadataLocalStorage();
         return facemask.isVisible;
       }
     });
@@ -68,7 +70,7 @@ export class GetProductDetailService {
         return !facemaskMetadata[index].isProductAdded;
       } else {
         console.warn("Product metadata not in localstorage");
-        this.initAndStoreProductMetaData();
+        this.initProductMetadataLocalStorage();
         return !facemask.isVisible;
       }
     });
@@ -106,5 +108,9 @@ export class GetProductDetailService {
 
   getFacemaskDetail(id: number): Facemask {
     return MockAPI.facemasks[id];
+  }
+
+  getFacemaskCount(): number {
+    return MockAPI.facemasks.length;
   }
 }

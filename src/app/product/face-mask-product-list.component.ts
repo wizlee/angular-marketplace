@@ -21,7 +21,8 @@ export class FaceMaskProductListComponent implements OnInit {
   }
 
   onViewFacemask(id: number): void {
-    const productId: number = this.productService.getFacemaskProductIdForOnSale(id);
+    const productId: number =
+      this.productService.getFacemaskProductIdForOnSale(id);
     this.router.navigate(["/facemask", "detail", productId.toString()]);
   }
 }

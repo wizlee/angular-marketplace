@@ -1,6 +1,22 @@
 {
   "facemasks": [
     {
+      "title": "Dummy data for illustrating what data is provided in this mock product backend. Any array item in facemasks object MUST PROVIDE all these fields.",
+      "shop": "NoSuchShopExist",
+      "seller": "SellerNotFound",
+      "price": "99999",
+      "rating": 5,
+      "ratingCount": "99,999",
+      "isBestSeller": false,
+      "hasDiscount": false,
+      "discountedPrice": "",
+      "discountPercent": "",
+      "isFreeShipping": false,
+      "image": "",
+      "thumbnail": "",
+      "isVisible": false
+    },
+    {
       "title": "UK MADE Silk Face Mask Same Day Dispatch Free Delivery Free Mask Offer Ultra Soft Silk Satin Face Mask Nose Wire+Adjustable Face Mask",
       "shop": "TheBestFacemaskShop",
       "seller": "Kath",
