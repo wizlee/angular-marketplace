@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-marketplace": {
+    "angular-marketplace-final": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -40,7 +40,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular-marketplace",
+            "outputPath": "dist/angular-marketplace-final",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -90,22 +90,22 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular-marketplace:build"
+            "browserTarget": "angular-marketplace-final:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular-marketplace:build:production"
+              "browserTarget": "angular-marketplace-final:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-marketplace:build"
+            "browserTarget": "angular-marketplace-final:build"
           }
         }
       }
     }
   },
-  "defaultProject": "angular-marketplace"
+  "defaultProject": "angular-marketplace-final"
 }
