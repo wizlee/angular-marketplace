@@ -1,0 +1,116 @@
+<div
+  class="gnav-header global-nav v2-toolkit-gnav-header wt-position-relative wt-z-index-5"
+  id="gnav-header"
+>
+  <header
+    class="global-enhancements-header wt-bg-white wt-display-flex-xs wt-justify-content-space-between wt-align-items-center wt-width-full wt-body-max-width wt-pl-xs-2 wt-pr-xs-2 wt-pl-lg-6 wt-pr-lg-6 wt-bb-xs wt-bb-lg-none gnav-header-inner wt-pt-lg-2 wt-pb-lg-2&#10; &#10;"
+    id="gnav-header-inner"
+    role="banner"
+  >
+    <!-- Etsy Place Holder Icon -->
+    <div
+      class="wt-pb-xs-1 wt-pb-lg-0 wt-pt-sm-1 wt-pt-lg-0 wt-pr-xs-0 wt-pr-sm-1"
+    >
+      <a routerLink="/">
+        <span
+          class="etsy-icon wt-display-block wt-fill-orange wt-nudge-r-3 wt-nudge-t-1 logo-dimensions wt-animated wt-animated--appear-01"
+          id="logo">
+          <img src="assets/logo.png" alt="Home Page Icon"/>
+        </span>
+      </a>
+    </div>
+
+    <!-- Search Bar -->
+    <div
+      class="wt-display-flex-xs wt-pr-lg-3 wt-flex-lg-1 wt-flex-basis-xs-full order-mobile-tablet-2"
+    >
+      <button
+        class="wt-btn wt-btn--transparent wt-btn--transparent-flush-left wt-btn--icon wt-hide-lg wt-mb-xs-2 wt-mb-lg-0"
+        aria-controls="mobile-catnav-overlay"
+        tab-index="0"
+      >
+        <span class="etsy-icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            viewBox="0 0 24 24"
+            focusable="false"
+          >
+            <path
+              d="M 20 7 H 4 C 3.4 7 3 6.6 3 6 s 0.4 -1 1 -1 h 16 c 0.6 0 1 0.4 1 1 S 20.6 7 20 7 Z"
+            />
+            <path
+              d="M 15.2 13 H 4 c -0.6 0 -1 -0.4 -1 -1 s 0.4 -1 1 -1 h 11.2 c 0.6 0 1 0.4 1 1 S 15.8 13 15.2 13 Z"
+            />
+            <path
+              d="M 20 19 H 4 c -0.6 0 -1 -0.4 -1 -1 s 0.4 -1 1 -1 h 16 c 0.6 0 1 0.4 1 1 S 20.6 19 20 19 Z"
+            />
+          </svg>
+        </span>
+      </button>
+      <div
+        class="global-enhancements-search-browse-wrapper wt-display-inline-block wt-flex-xs-1"
+      >
+        <form
+          class="global-enhancements-search-nav wt-position-relative wt-display-flex-xs"
+          id="gnav-search"
+          action="javascript:void(0)"
+          role="search"
+        >
+          <div
+            class="wt-menu wt-menu--full-width wt-menu--offset-below-trigger"
+          >
+            <div
+              class="wt-input-btn-group global-enhancements-search-input-btn-group wt-menu__trigger"
+              aria-expanded="false"
+            >
+              <input
+                class="wt-input wt-input-btn-group__input global-enhancements-search-input-btn-group__input wt-pr-xs-7"
+                id="global-enhancements-search-query"
+                type="text"
+                placeholder="Search for anything"
+              />
+              <button class="wt-input-btn-group__btn" aria-label="Search">
+                <span class="etsy-icon wt-nudge-b-1">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                    viewBox="0 0 24 24"
+                    focusable="false"
+                  >
+                    <path
+                      d="M 10 18 a 8 8 0 1 1 8 -8 A 8.009 8.009 0 0 1 10 18 Z M 10 4 a 6 6 0 1 0 6 6 A 6.007 6.007 0 0 0 10 4 Z"
+                    />
+                    <path
+                      d="M 21 22 a 1 1 0 0 1 -0.707 -0.293 l -4 -4 a 1 1 0 0 1 1.414 -1.414 l 4 4 A 1 1 0 0 1 21 22 Z"
+                    />
+                  </svg>
+                </span>
+              </button>
+            </div>
+            <div
+              class="wt-menu__body wt-menu__body--will-animate global-nav-menu__body&#10; wt-width-full wt-max-width-full&#10;"
+              id="global-enhancements-search-suggestions"
+            ></div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Login, Basket & Inbox -->
+    <div class="wt-flex-shrink-xs-0">
+      <nav aria-label="Main navigation">
+        <ul
+          class="wt-display-flex-xs wt-justify-content-space-between wt-list-unstyled wt-m-xs-0 wt-align-items-center"
+        >
+          <li>
+            <app-login></app-login>
+          </li>
+          <li>
+            <app-inbox></app-inbox>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+</div>
