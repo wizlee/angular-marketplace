@@ -1,25 +1,26 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from "@angular/router";
+import { RouterModule, Routes } from "@angular/router";
 
 import { InvalidComponent } from "./home/invalid.component";
 import { NotLoginMessageComponent } from "./account/not-login-message.component";
 
+const routes: Routes = [
+  { path: "", redirectTo: "/home", pathMatch: "full" },
+  {
+    path: "notlogin",
+    component: NotLoginMessageComponent,
+  },
+  {
+    path: "**",
+    component: InvalidComponent,
+  },
+];
+
 @NgModule({
-  declarations: [],
   imports: [
     CommonModule,
-    RouterModule.forRoot([
-      { path: "", redirectTo: "/home", pathMatch: "full" },
-      {
-        path: "notlogin",
-        component: NotLoginMessageComponent,
-      },
-      {
-        path: "**",
-        component: InvalidComponent,
-      },
-    ]),
+    RouterModule.forRoot(routes),
   ],
   exports: [RouterModule],
 })

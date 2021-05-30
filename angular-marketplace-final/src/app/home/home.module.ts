@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from "@angular/router";
+import { RouterModule, Routes } from "@angular/router";
 import { HeaderComponent } from './header.component';
 import { ProductBannerComponent } from './product-banner.component';
 import { ProductBundleComponent } from './product-bundle.component';
@@ -16,6 +16,21 @@ import { ProductModule } from "../product/product.module";
 import { FaceMaskProductListComponent } from "../product/face-mask-product-list.component";
 import { ProductDetailComponent } from "../product/product-detail.component";
 
+const routes: Routes = [
+  {
+    path: "home",
+    component: ContentComponent,
+  },
+  {
+    path: "facemask",
+    component: FaceMaskProductListComponent,
+  },
+  {
+    path: ":product/detail/:id",
+    component: ProductDetailComponent,
+  },
+];
+
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -29,20 +44,7 @@ import { ProductDetailComponent } from "../product/product-detail.component";
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild([
-      {
-        path: "home",
-        component: ContentComponent,
-      },
-      {
-        path: "facemask",
-        component: FaceMaskProductListComponent,
-      },
-      {
-        path: ":product/detail/:id",
-        component: ProductDetailComponent,
-      },
-    ]),
+    RouterModule.forChild(routes),
     ChatModule,
     AccountModule,
     ProductModule,

@@ -11,7 +11,27 @@ const PRODUCT_METADATA: string = "product";
 })
 export class GetProductDetailService {
   constructor() {
+    // ============================
     // This is a workaround for demonstrating seller adding goods.
+    // ============================
+    //
+    // Below is a sample item for facemasks.json:
+    // {
+    //   "title": "Dummy data for illustrating what data is provided in this mock product backend. Any array item in facemasks object MUST PROVIDE all these fields.",
+    //   "shop": "NoSuchShopExist",
+    //   "seller": "SellerNotFound",
+    //   "price": "99999",
+    //   "rating": 5,
+    //   "ratingCount": "99,999",
+    //   "isBestSeller": false,
+    //   "hasDiscount": false,
+    //   "discountedPrice": "",
+    //   "discountPercent": "",
+    //   "isFreeShipping": false,
+    //   "image": "",
+    //   "thumbnail": "",
+    //   "isVisible": false
+    // },
     //
     // The initial state of all the products are loaded from facemasks.json into the browser localstorage.
     // Then, the app will refer to the localstorage to determine if a specific product is added for sale.
