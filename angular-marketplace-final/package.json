@@ -1,6 +1,6 @@
 {
-  "name": "angular-marketplace",
-  "version": "0.0.0",
+  "name": "angular-marketplace-final",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -29,8 +29,8 @@
     "@types/node": "^12.11.1",
     "typescript": "~4.1.5"
   },
-  "engines" : {
-    "node" : ">=10"
+  "engines": {
+    "node": ">=10"
   },
   "browserslist": [
     "last 1 Chrome version",

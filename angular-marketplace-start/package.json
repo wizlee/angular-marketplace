@@ -27,8 +27,8 @@
     "@types/node": "^12.11.1",
     "typescript": "~4.1.5"
   },
-  "engines" : {
-    "node" : ">=10"
+  "engines": {
+    "node": ">=10"
   },
   "browserslist": [
     "last 1 Chrome version",
