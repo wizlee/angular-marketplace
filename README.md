@@ -30,6 +30,7 @@ To run the demo follow these steps:
 2. From the [dashboard](https://app.cometchat.com/signup?utm_source=github&utm_medium=link&utm_campaign=angular-marketplace), create a new app called "Angular Marketplace" as shown below:
   ![](screenshots/CometChatPro-CreateApp.png)
 3. Once created, go into your app and you will be presented a quick start page as below. Take note of the `APP ID`, `Region` and `Auth Key` values.
+  ![](screenshots/example-app-quick-start.png)
 4. Download the repository [here](https://github.com/wizlee/angular-marketplace/archive/refs/heads/master.zip) or by running `git clone https://github.com/wizlee/angular-marketplace.git`. 
 5. To run the final end result of this Etsy Angular Marketplace website, first change directory into `angular-marketplace/angular-marketplace-final` folder.
 6. Open the folder in VS Code or any other modern text editor. 
