@@ -11,8 +11,7 @@ This example shows a marketplace app which allows buyers and sellers to chat wit
   Desktop Browser View
   <br></br>
   <img src="screenshots/Mobile-GalaxyS5-FrontPage.gif">
-  <br></br>
-  Mobile View
+  <br>Mobile View
 </p>
 
 
