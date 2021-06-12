@@ -1,0 +1,79 @@
+<div
+  class="body-wrap wt-body-max-width
+    wt-display-flex-md wt-flex-direction-column-xs"
+  style="max-width: 384px;"
+>
+  <form
+    class="wt-position-relative"
+    #f="ngForm"
+    (ngSubmit)="onAddGoods(f)"
+  >
+    <div class="wt-grid wt-grid--block">
+      <div class="wt-grid__item-xs-12">
+        <div class="wt-pb-xs-4">
+          <a
+            routerLink="../"
+            class="
+              wt-arrow-link wt-arrow-link--back
+              wt-text-gray wt-text-caption
+            "
+            alt="Back to search results"
+            >Back to homepage
+          </a>
+        </div>
+        <h1 *ngIf="!goodsNotOnSale.length"
+          class="wt-text-title-02"
+          id="join-neu-overlay-title"
+        >
+          No more Goods to put on sale.
+          <br>
+          <br>
+          Reset by deleting the product object in localstorage or clear browser cache for this page.
+        </h1>
+
+        <div *ngIf="goodsNotOnSale.length">
+          <div
+            class="wt-display-flex-xs wt-justify-content-space-between wt-align-items-center wt-pb-xs-2"
+          >
+            <h1
+              class="wt-text-title-02"
+              id="join-neu-overlay-title"
+            >
+              Add Your Goods
+            </h1>
+          </div>
+
+          <div class="wt-mb-xs-2">
+            <div class="wt-select wt-validation">
+              <select
+                id="goods-selection"
+                class="wt-select__element"
+                name="notOnSaleIndex"
+                #notOnSaleIndex="ngModel"
+                ngModel required
+              >
+                <option *ngFor="let goods of goodsNotOnSale; index as i" [ngValue]="i">
+                  Facemask by seller: "{{ goods.seller }}", shop: "{{ goods.shop }}"
+                </option>
+              </select>
+              <div
+                *ngIf="notOnSaleIndex.invalid"
+                class="wt-validation__message wt-mt-xs-1"
+              >Please select a product</div>
+            </div>
+          </div>
+
+          <button
+            name="sign-in"
+            class="wt-btn wt-btn--primary wt-width-full"
+            type="submit"
+          >
+            Add selected goods
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </form>
+
+</div>

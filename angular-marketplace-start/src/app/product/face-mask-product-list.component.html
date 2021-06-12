@@ -1,0 +1,418 @@
+<div
+  class="wt-bg-white wt-grid__item-md-12 wt-pl-xs-1 wt-pr-xs-0 wt-pr-md-1 wt-pl-lg-0 wt-pr-lg-0 wt-bb-xs-1"
+>
+  <div class="wt-body-max-width">
+    <div class="wt-mt-xs-3 wt-text-black">
+
+      <div class="wt-grid wt-pl-xs-0 wt-pr-xs-1 search-listings-group">
+        <div
+          class="wt-grid__item-xs-12 wt-pr-xs-1 wt-pl-xs-1 wt-pl-md-3 wt-pr-md-3"
+        >
+          <div
+            class="wt-display-flex-xs wt-mt-xs-1 wt-mb-xs-2 wt-justify-content-space-between wt-align-items-center"
+          >
+            <div class="wt-display-flex-xs wt-no-wrap">
+              <div class="wt-hide-xs wt-show-sm">
+                <ul class="wt-action-group wt-list-inline"></ul>
+              </div>
+              <div class="wt-pr-xs-1">
+                <button
+                  id="search-filter-button"
+                  class="wt-btn wt-btn--small wt-btn--secondary wt-display-flex-xs wt-align-items-center"
+                  aria-controls="search-filters-overlay"
+                >
+                  <span class="etsy-icon wt-icon--smaller-xs"
+                    ><svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path
+                        d="M5,7.6h5.7c0.4,1.2,1.5,2,2.8,2s2.4-0.8,2.8-2H19c0.6,0,1-0.4,1-1s-0.4-1-1-1h-2.7c-0.4-1.2-1.5-2-2.8-2s-2.4,0.8-2.8,2H5 c-0.6,0-1,0.4-1,1S4.4,7.6,5,7.6z M13.5,5.6c0.6,0,1,0.4,1,1s-0.4,1-1,1s-1-0.4-1-1S12.9,5.6,13.5,5.6z"
+                      ></path>
+                      <path
+                        d="M19,11.1h-7.7c-0.4-1.2-1.5-2-2.8-2s-2.4,0.8-2.8,2H5c-0.6,0-1,0.4-1,1c0,0.6,0.4,1,1,1h0.7c0.4,1.2,1.5,2,2.8,2 s2.4-0.8,2.8-2H19c0.6,0,1-0.4,1-1C20,11.5,19.6,11.1,19,11.1z M8.5,13.1c-0.6,0-1-0.4-1-1c0-0.6,0.4-1,1-1s1,0.4,1,1 C9.5,12.7,9.1,13.1,8.5,13.1z"
+                      ></path>
+                      <path
+                        d="M19,16.6h-1.2c-0.4-1.2-1.5-2-2.8-2s-2.4,0.8-2.8,2H5c-0.6,0-1,0.4-1,1s0.4,1,1,1h7.2c0.4,1.2,1.5,2,2.8,2s2.4-0.8,2.8-2 H19c0.6,0,1-0.4,1-1S19.6,16.6,19,16.6z M15,18.6c-0.6,0-1-0.4-1-1s0.4-1,1-1s1,0.4,1,1S15.6,18.6,15,18.6z"
+                      ></path>
+                    </svg>
+                  </span>
+                  <span class="wt-hide-xs wt-show-md filter-expander"
+                    >Filters</span
+                  >
+                </button>
+              </div>
+            </div>
+            <div
+              class="wt-display-flex-xs wt-align-items-center wt-pr-lg-3"
+            >
+              <div
+                class="wt-text-right-xs wt-text-left-md wt-pr-md-0 wt-pr-xs-1"
+                data-result-info=""
+              >
+                <ul class="wt-list-inline wt-mr-xs-1"></ul>
+
+                <span class="wt-text-caption wt-text-link-no-underline">
+                  <span class="wt-display-inline-flex-lg">
+                    <span>{{ facemasks.length.toString() }} results,</span>
+                    <span
+                      class="wt-display-inline-flex-xs wt-flex-nowrap wt-nudge-l-2"
+                      >with Ads
+                      <span
+                        class="wt-text-left-xs wt-popover wt-nudge-b-1 wt-nudge-l-2"
+                        data-search-ads-popover=""
+                      >
+                        <button
+                          data-wt-popover-trigger=""
+                          aria-disabled=""
+                          class="wt-popover__trigger trigger-color-inherit"
+                          aria-describedby="search-ads-popover-content"
+                        >
+                          <span class="wt-screen-reader-only"
+                            >Learn more</span
+                          >
+                          <span class="etsy-icon wt-icon--smaller-xs"
+                            ><svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 24 24"
+                              aria-hidden="true"
+                              focusable="false"
+                            >
+                              <path
+                                d="M12,22A10,10,0,1,1,22,12,10.012,10.012,0,0,1,12,22ZM12,4a8,8,0,1,0,8,8A8.009,8.009,0,0,0,12,4Z"
+                              ></path>
+                              <circle cx="12" cy="16.5" r="1.5"></circle>
+                              <path
+                                d="M13,14H11a3.043,3.043,0,0,1,1.7-2.379C13.5,11.055,14,10.674,14,10a2,2,0,1,0-4,0H8a4,4,0,1,1,8,0,4,4,0,0,1-2.152,3.259A2.751,2.751,0,0,0,13,14Z"
+                              ></path>
+                            </svg>
+                          </span>
+                        </button>
+                      </span>
+                    </span>
+                  </span>
+                </span>
+              </div>
+              <div
+                data-appears-component-name="Search2_ApiSpecs_SavedSearch_Button"
+                data-appears-event-data='{"is_saved":false}'
+                class="wt-display-inline-block"
+              >
+                <div
+                  data-saved-search-button-container=""
+                  data-saved-search-signed-out="true"
+                  class="wt-popover wt-pl-xs-2 appears-ready"
+                >
+                  <button
+                    type="button"
+                    class="wt-btn wt-btn--small wt-display-flex-xs wt-btn--secondary wt-pl-xs-0 wt-pr-xs-0 wt-justify-content-center inline-overlay-trigger save-search-action"
+                    title="Save this search"
+                    data-saved-search="false"
+                    data-saved-search-id=""
+                    data-wt-popover-trigger=""
+                    aria-describedby="saved-search-nudge"
+                  >
+                    <!--savepage-span-remove-->
+                    <span class="etsy-icon wt-icon--smaller-xs"
+                      ><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                        focusable="false"
+                      >
+                        <path
+                          d="M12,21C10.349,21,2,14.688,2,9,2,5.579,4.364,3,7.5,3A6.912,6.912,0,0,1,12,5.051,6.953,6.953,0,0,1,16.5,3C19.636,3,22,5.579,22,9,22,14.688,13.651,21,12,21ZM7.5,5C5.472,5,4,6.683,4,9c0,4.108,6.432,9.325,8,10,1.564-.657,8-5.832,8-10,0-2.317-1.472-4-3.5-4-1.979,0-3.7,2.105-3.721,2.127L11.991,8.1,11.216,7.12C11.186,7.083,9.5,5,7.5,5Z"
+                        ></path>
+                      </svg>
+                    </span>
+                  </button>
+                </div>
+              </div>
+              <div
+                class="wt-display-flex-xs wt-align-items-center wt-pl-xs-1"
+                data-sort-by-menu-desktop=""
+              >
+                <div
+                  class="wt-menu sort-by-redesign"
+                  data-wt-menu=""
+                  data-menu-type="option"
+                  data-open-direction-horiz="right"
+                  data-open-direction-vert="bottom"
+                  data-open-direction-force="true"
+                  id="sortby"
+                >
+                  <button
+                    type="button"
+                    class="wt-menu__trigger wt-btn wt-btn--small wt-btn--secondary wt-pl-xs-0 wt-pr-xs-0 wt-display-flex-xs wt-justify-content-center"
+                    title="Sort by: Relevancy"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    data-wt-menu-trigger=""
+                  >
+                    <span
+                      class="etsy-icon wt-icon--smaller-xs"
+                      data-sort-by-button-icon=""
+                      ><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                        focusable="false"
+                      >
+                        <path
+                          d="M16 20.414l3.707-3.707a1 1 0 00-1.414-1.414L17 16.586V6a1 1 0 00-2 0v10.586l-1.293-1.293a1 1 0 10-1.414 1.414L16 20.414zM9 18V7.414l1.293 1.293a1 1 0 001.414-1.414L8 3.586 4.293 7.293a1 1 0 001.414 1.414L7 7.414V18a1 1 0 102 0z"
+                        ></path>
+                      </svg>
+                    </span>
+                  </button>
+                  <!--savepage-div-remove-->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="wt-bg-white wt-display-block wt-pb-xs-2 wt-mt-xs-0">
+            <div data-search-results="">
+              <div
+                data-behat-search-results-lg=""
+                data-search-results-lg=""
+                data-search-results-region=""
+              >
+                <ul
+                  class="wt-grid wt-grid--block wt-pl-xs-0 tab-reorder-container"
+                >
+                  <li
+                    *ngFor="let facemask of facemasks; index as i"
+                    class="wt-list-unstyled wt-grid__item-xs-6 wt-grid__item-md-4 wt-grid__item-lg-3 wt-grid__item-xl-3 wt-order-xs-0 wt-order-md-0 wt-order-lg-0 wt-order-xl-0 wt-show-xs wt-show-md wt-show-lg wt-show-xl tab-reorder"
+                  >
+                    <div
+                      class="js-merch-stash-check-listing v2-listing-card wt-mr-xs-0 search-listing-card--desktop"
+                      data-palette-listing-id="866463320"
+                      data-shop-id=""
+                      data-listing-id="866463320"
+                      data-behat-listing-card=""
+                      data-listing-card-v2=""
+                    >
+                      <a
+                        class="listing-link wt-display-inline-block a8442f157e355f03 logged"
+                        (click)="onViewFacemask(i)"
+                      >
+                        <div
+                          class="v2-listing-card__img wt-position-relative"
+                        >
+                          <div class="">
+                            <div
+                              class="placeholder placeholder-landscape"
+                            >
+                              <div class="placeholder-content">
+                                <div
+                                  class="placeholder vertically-centered-placeholder placeholder-landscape"
+                                >
+                                  <div class="height-placeholder">
+                                    <img
+                                      data-listing-card-listing-image=""
+                                      data-savepage-src="https://i.etsystatic.com/23382228/c/1919/1526/0/4/il/59fb6c/3059739718/il_340x270.3059739718_4wpj.jpg"
+                                      src="{{ facemask.thumbnail }}"
+                                      class="wt-width-full wt-height-full wt-display-block wt-position-absolute"
+                                      alt=""
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="v2-listing-card__info">
+                          <div>
+                            <h3
+                              class="wt-mb-xs-0 wt-text-truncate wt-text-title-01"
+                            >
+                              {{ facemask.title }}
+                            </h3>
+                            <p></p>
+                            <div>
+                              <span
+                                class="wt-position-top wt-line-height-tight wt-nudge-t-2 wt-display-block"
+                              >
+                                <span class="stars-svg stars-smaller">
+                                  <!--savepage-input-remove-->
+                                  <!--savepage-input-remove-->
+                                  <span class="screen-reader-only"
+                                    >5 out of 5 stars</span
+                                  >
+
+                                  <span
+                                    data-rating="1"
+                                    class="rating lit rating-first wt-nudge-b-2"
+                                    aria-hidden="true"
+                                  >
+                                    <span class="etsy-icon stars-svg-star"
+                                      ><svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="3 3 18 18"
+                                        aria-hidden="true"
+                                        focusable="false"
+                                      >
+                                        <path
+                                          d="M19.985,10.36a0.5,0.5,0,0,0-.477-0.352H14.157L12.488,4.366a0.5,0.5,0,0,0-.962,0l-1.67,5.642H4.5a0.5,0.5,0,0,0-.279.911L8.53,13.991l-1.5,5.328a0.5,0.5,0,0,0,.741.6l4.231-2.935,4.215,2.935a0.5,0.5,0,0,0,.743-0.6l-1.484-5.328,4.306-3.074A0.5,0.5,0,0,0,19.985,10.36Z"
+                                        ></path>
+                                      </svg>
+                                    </span>
+                                    <span
+                                      data-rating="2"
+                                      class="rating lit"
+                                    >
+                                      <span
+                                        class="etsy-icon stars-svg-star"
+                                        ><svg
+                                          xmlns="http://www.w3.org/2000/svg"
+                                          viewBox="3 3 18 18"
+                                          aria-hidden="true"
+                                          focusable="false"
+                                        >
+                                          <path
+                                            d="M19.985,10.36a0.5,0.5,0,0,0-.477-0.352H14.157L12.488,4.366a0.5,0.5,0,0,0-.962,0l-1.67,5.642H4.5a0.5,0.5,0,0,0-.279.911L8.53,13.991l-1.5,5.328a0.5,0.5,0,0,0,.741.6l4.231-2.935,4.215,2.935a0.5,0.5,0,0,0,.743-0.6l-1.484-5.328,4.306-3.074A0.5,0.5,0,0,0,19.985,10.36Z"
+                                          ></path>
+                                        </svg>
+                                      </span>
+                                      <span
+                                        data-rating="3"
+                                        class="rating lit"
+                                      >
+                                        <span
+                                          class="etsy-icon stars-svg-star"
+                                          ><svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="3 3 18 18"
+                                            aria-hidden="true"
+                                            focusable="false"
+                                          >
+                                            <path
+                                              d="M19.985,10.36a0.5,0.5,0,0,0-.477-0.352H14.157L12.488,4.366a0.5,0.5,0,0,0-.962,0l-1.67,5.642H4.5a0.5,0.5,0,0,0-.279.911L8.53,13.991l-1.5,5.328a0.5,0.5,0,0,0,.741.6l4.231-2.935,4.215,2.935a0.5,0.5,0,0,0,.743-0.6l-1.484-5.328,4.306-3.074A0.5,0.5,0,0,0,19.985,10.36Z"
+                                            ></path>
+                                          </svg>
+                                        </span>
+                                        <span
+                                          data-rating="4"
+                                          class="rating lit"
+                                        >
+                                          <span
+                                            class="etsy-icon stars-svg-star"
+                                            ><svg
+                                              xmlns="http://www.w3.org/2000/svg"
+                                              viewBox="3 3 18 18"
+                                              aria-hidden="true"
+                                              focusable="false"
+                                            >
+                                              <path
+                                                d="M19.985,10.36a0.5,0.5,0,0,0-.477-0.352H14.157L12.488,4.366a0.5,0.5,0,0,0-.962,0l-1.67,5.642H4.5a0.5,0.5,0,0,0-.279.911L8.53,13.991l-1.5,5.328a0.5,0.5,0,0,0,.741.6l4.231-2.935,4.215,2.935a0.5,0.5,0,0,0,.743-0.6l-1.484-5.328,4.306-3.074A0.5,0.5,0,0,0,19.985,10.36Z"
+                                              ></path>
+                                            </svg>
+                                          </span>
+                                          <span
+                                            data-rating="5"
+                                            class="rating lit"
+                                          >
+                                            <span
+                                              class="etsy-icon stars-svg-star"
+                                              ><svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="3 3 18 18"
+                                                aria-hidden="true"
+                                                focusable="false"
+                                              >
+                                                <path
+                                                  d="M19.985,10.36a0.5,0.5,0,0,0-.477-0.352H14.157L12.488,4.366a0.5,0.5,0,0,0-.962,0l-1.67,5.642H4.5a0.5,0.5,0,0,0-.279.911L8.53,13.991l-1.5,5.328a0.5,0.5,0,0,0,.741.6l4.231-2.935,4.215,2.935a0.5,0.5,0,0,0,.743-0.6l-1.484-5.328,4.306-3.074A0.5,0.5,0,0,0,19.985,10.36Z"
+                                                ></path>
+                                              </svg>
+                                            </span>
+                                          </span>
+                                        </span>
+                                      </span>
+                                    </span>
+                                  </span>
+                                </span>
+                                <span
+                                  class="wt-text-body-01 wt-text-gray wt-display-inline-block wt-nudge-b-1"
+                                >
+                                  ({{ facemask.ratingCount }})
+                                </span>
+                              </span>
+                            </div>
+                            <div
+                              class="n-listing-card__price wt-display-flex-xs wt-align-items-center wt-width-full wt-flex-wrap wt-width-full wt-text-title-01"
+                            >
+                              <p class="wt-text-title-01">
+                                <span class="currency-symbol">$</span
+                                ><span class="currency-value">{{ facemask.price }}</span>
+                              </p>
+                              <p *ngIf="facemask.hasDiscount"
+                                class="wt-text-caption search-collage-promotion-price wt-text-truncate wt-no-wrap wt-text-slime"
+                              >
+                                <span
+                                  class="wt-text-strikethrough"
+                                  aria-hidden="true"
+                                  ><span class="currency-symbol">$</span
+                                  ><span class="currency-value"
+                                    >{{ facemask.discountedPrice }}</span
+                                  ></span
+                                >
+                                <span> ({{ facemask.discountPercent }} off) </span>
+                              </p>
+                            </div>
+
+                            <span *ngIf="facemask.isBestSeller"
+                              class="wt-badge wt-badge--small wt-badge--status-03 wt-mt-xs-1 wt-mr-xs-1 search-half-unit-mb"
+                            >
+                              <div>
+                                <span
+                                  class="etsy-icon wt-icon--smallest wt-display-inline-block wt-nudge-b-1"
+                                  ><svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24"
+                                    aria-hidden="true"
+                                    focusable="false"
+                                  >
+                                    <path
+                                      d="M19 13.8c.6-1.1 1-2.4 1-3.8 0-4.4-3.6-8-8-8s-8 3.6-8 8c0 1.4.4 2.7 1 3.8L2 19l4.2.7L8.9 23l2.9-5h.4l2.9 5 2.7-3.3L22 19l-3-5.2zM8.6 19.5l-.9-1.1-.5-.6-.7-.1-1.4-.2 1.1-1.9c.9 1 2.1 1.7 3.4 2.1l-1 1.8zM12 16c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6zm5.5 1.7l-.7.1-.5.6-.9 1.1-1.1-1.8c1.3-.4 2.5-1.1 3.4-2.1l1.1 1.9-1.3.2z"
+                                    ></path>
+                                    <path
+                                      d="M16.5 9.2c.2-.1.2-.4.2-.6s-.3-.3-.5-.3h-2.8l-.9-2.7c-.1-.4-.8-.4-1 0l-.9 2.7H7.8c-.2 0-.4.1-.5.3-.1.2 0 .4.2.6l2.3 1.7-.9 2.7c-.1.2 0 .4.2.6.2.1.4.1.6 0l2.3-1.7 2.3 1.7c.1.1.2.1.3.1s.2 0 .3-.1c.2-.1.2-.4.2-.6l-.9-2.7 2.3-1.7zm-4.2 2.3c-.1-.1-.2-.1-.3-.1s-.2 0-.3.1l-1.4 1 .5-1.6c.1-.2 0-.4-.2-.6l-1.4-1H11c.2 0 .4-.1.5-.3l.5-1.6.5 1.6c.1.2.3.3.5.3h1.7l-1.4 1c-.2.1-.2.4-.2.6l.5 1.6-1.3-1z"
+                                    ></path>
+                                  </svg>
+                                </span>
+                                <span class="wt-display-inline-block">
+                                  Bestseller
+                                </span>
+                              </div>
+                            </span>
+
+                            <div *ngIf="facemask.isFreeShipping"
+                              class="promotion-badge-line"
+                            >
+                              <p class="wt-text-truncate wt-text-caption-title">
+                                <span class="wt-badge wt-badge--small wt-badge--sale-01">
+                                  FREE shipping
+                                </span>
+                              </p>
+                            </div>
+
+                            <p></p>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
