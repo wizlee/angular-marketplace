@@ -12,12 +12,23 @@ import { InvalidComponent } from './invalid.component';
 
 import { AccountModule } from "../account/account.module";
 import { ChatModule } from "../chat/chat.module";
+import { ProductModule } from "../product/product.module";
+import { FaceMaskProductListComponent } from "../product/face-mask-product-list.component";
+import { ProductDetailComponent } from "../product/product-detail.component";
 
 const routes: Routes = [
   {
     path: "home",
     component: ContentComponent,
-  }
+  },
+  {
+    path: "facemask",
+    component: FaceMaskProductListComponent,
+  },
+  {
+    path: ":product/detail/:id",
+    component: ProductDetailComponent,
+  },
 ];
 
 @NgModule({
@@ -35,7 +46,8 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     ChatModule,
-    AccountModule
+    AccountModule,
+    ProductModule,
   ],
   exports: [
     HeaderComponent,
