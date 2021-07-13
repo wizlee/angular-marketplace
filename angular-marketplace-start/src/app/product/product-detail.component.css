@@ -2052,7 +2052,3 @@ button.wt-popover__trigger {
 button.wt-content-toggle--btn {
   cursor: pointer;
 }
-#cometChatWidgetWrapper {
-  width: 0;
-  height: 0;
-}

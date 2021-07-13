@@ -1,0 +1,15 @@
+<div *ngIf="isInitSuccess">
+  <div class="main">
+    <div [ngClass]="isOpen ? 'chat-box is-visible' : 'chat-box'">
+      <cometchat-messages
+        [item]="cometChatUser"
+        type="user"
+      >
+      </cometchat-messages>
+    </div>
+    <a [ngClass]="isOpen ? 'btn-container is-float is-visible' : 'btn-container'"
+      (click)="openOrClose()">
+      <i [ngClass]="isOpen ? 'zmdi zmdi-close is-active is-visible' : 'zmdi zmdi-comment-outline'"></i>
+    </a>
+  </div>
+</div>

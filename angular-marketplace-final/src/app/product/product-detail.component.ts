@@ -1,31 +1,35 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { CometChatWidget } from "../../assets/cometchatwidget.js";
-import { COMETCHAT_CONSTANTS } from "../../CONSTS";
 import { AuthService } from "../account/auth.service";
-import { User } from "../account/user";
 import { GetProductDetailService } from "./_api/get-product-detail.service";
 import { Facemask } from "./_api/product-detail";
+import { UserMessageComponent } from "../chat/user-message.component";
 
 @Component({
   templateUrl: "./product-detail.component.html",
   styleUrls: ["./product-detail.component.css"],
 })
-export class ProductDetailComponent implements OnInit, OnDestroy {
+export class ProductDetailComponent implements OnInit {
   isChatWidgetInitialized: boolean;
   isChatWidgetLaunched: boolean;
   facemask: Facemask;
+  sellerUid: string;
+  isUserLoggedIn: boolean;
+
+  @ViewChild(UserMessageComponent)
+  private userMsgComponent!: UserMessageComponent;
 
   constructor(
     private route: ActivatedRoute,
-    private authService: AuthService,
+    public authService: AuthService,
     private productService: GetProductDetailService
   ) {}
 
   ngOnInit(): void {
     this.isChatWidgetInitialized = false;
     this.isChatWidgetLaunched = false;
+    this.sellerUid = "";
 
     // As a simplified use case, this.route.snapshot is used because
     // this component will not be reused
@@ -37,100 +41,15 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     const id: number = parseInt(this.route.snapshot.paramMap.get("id"));
     this.facemask = this.productService.getFacemaskDetail(id);
 
-    if (!this.authService.isLoggedIn()) return;
-    this.initCometChatWidget().then(
-      () => {
-        this.isChatWidgetInitialized = true;
-        // launch and keep the chat widget minimized
-        this.launchCometChatWidget(this.facemask.shop, false);
-      },
-      (error) => {
-        console.log("User login failed with error:", error);
-      }
-    );
-  }
-
-  ngOnDestroy(): void {
     if (this.authService.isLoggedIn()) {
-      CometChatWidget.openOrCloseChat(false);
-      CometChatWidget.logout();
+      this.sellerUid = this.facemask.shop;
     }
   }
 
   onMessageSeller(): void {
     if (this.authService.isLoggedIn()) {
-      this.initCometChatWidget().then(
-        () => {
-          this.isChatWidgetInitialized = true;
-          // launch and open the chat widget
-          this.launchCometChatWidget(this.facemask.shop, true);
-        },
-        (error) => {
-          this.isChatWidgetInitialized = false;
-          console.log("User login failed with error:", error);
-        }
-      );
+      this.sellerUid = this.facemask.shop;
+      this.userMsgComponent.openOrClose();
     }
-  }
-
-  private initCometChatWidget() {
-    if (this.isChatWidgetInitialized) {
-      return new Promise((resolve, _) => {
-        resolve(true);
-      });
-    }
-
-    return CometChatWidget.init({
-      appID: COMETCHAT_CONSTANTS.APP_ID,
-      appRegion: COMETCHAT_CONSTANTS.REGION,
-      authKey: COMETCHAT_CONSTANTS.AUTH_KEY,
-    }).then(
-      () => {
-        let userObj: User = this.authService.getUser();
-        return CometChatWidget.login({uid: userObj.id});
-      },
-      (error) => {
-        console.log("Initialization failed with error:", error);
-        return new Promise((resolve, _) => {
-          resolve(false);
-        });
-      }
-    );
-  }
-
-  private launchCometChatWidget(
-    sellerUID: string,
-    isOpenWidget: boolean
-  ): void {
-    if (this.isChatWidgetLaunched) {
-      if (isOpenWidget) {
-        CometChatWidget.openOrCloseChat(true);
-      }
-      return;
-    }
-
-    CometChatWidget.launch({
-      widgetID: "WIDGET_ID", // TODO: insert widgetID
-      target: "#cometChatWidgetWrapper",
-      docked: "true",
-      alignment: "left", //left or right
-      roundedCorners: "true",
-      height: "400px",
-      width: "350px",
-      defaultID: sellerUID, //default UID (user) or GUID (group) to show,
-      defaultType: "user", //user or group
-    }).then(
-      () => {
-        this.isChatWidgetLaunched = true;
-        if (isOpenWidget) {
-          CometChatWidget.openOrCloseChat(true);
-        }
-      },
-      (error) => {
-        console.log(
-          `Widget Launching failed with error: ${error}\n Have you insert your WidgetID?`
-        );
-      }
-    );
   }
 }
