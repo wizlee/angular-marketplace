@@ -1888,4 +1888,6 @@
   </div>
 </div>
 
-<div id="cometChatWidgetWrapper"></div>
+<div *ngIf="authService.isLoggedIn()">
+  <app-user-message [uid]="sellerUid"></app-user-message>
+</div>

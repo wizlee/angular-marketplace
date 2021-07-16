@@ -5,10 +5,12 @@ import { InboxComponent } from './inbox.component';
 import { CometChatConversationComponent } from './comet-chat-conversation.component';
 
 import { CometChatConversationListWithMessages } from "@cometChatComponents/Chats/CometChat-conversation-list-with-messages/cometchat-conversation-list-with-messages.module";
+import { CometChatMessages } from "@cometChatComponents/Messages/CometChat-messages/cometchat-messages.module";
 import { AuthGuard } from "../account/auth.guard";
+import { UserMessageComponent } from './user-message.component';
 
 @NgModule({
-  declarations: [InboxComponent, CometChatConversationComponent],
+  declarations: [InboxComponent, CometChatConversationComponent, UserMessageComponent],
   imports: [
     CommonModule,
     RouterModule.forChild([
@@ -19,7 +21,8 @@ import { AuthGuard } from "../account/auth.guard";
       },
     ]),
     CometChatConversationListWithMessages,
+    CometChatMessages,
   ],
-  exports: [InboxComponent],
+  exports: [InboxComponent, UserMessageComponent],
 })
 export class ChatModule {}
