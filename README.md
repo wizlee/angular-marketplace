@@ -1,7 +1,7 @@
 # Marketplace Site With Angular (Etsy/Amazon Clone)
 Read the full tutorial here:
 
-    NOT PUBLISH YET
+    https://dev.to/wizlee/how-to-build-a-marketplace-with-angular-etsy-clone-1oae
 
 This example shows a marketplace app which allows buyers and sellers to chat with each other:
 
